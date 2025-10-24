@@ -1,0 +1,80 @@
+#app {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #fff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+}
+
+/* MODIFIED: Using Flexbox for better alignment and spacing */
+.our_alliances {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem; /* Adds space between logos */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.our_alliances li img {
+    max-width: 10.5rem; /* ✅ CORRECTED: 169px -> 10.5rem */
+    height: auto; /* Ensures image scales properly */
+}
+
+/* ===== Info Boxes (Easiest way / Expert help) ===== */
+.itr-bx {
+    background: #fff;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.itr-bx:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Buttons ===== */
+.btn-register,
+.btn-expert {
+    background: #009245;
+    color: #fff;
+    padding: 0.5rem 1rem;       /* ✅ CORRECTED: 8px 16px -> 0.5rem 1rem */
+    border-radius: 0.375rem; /* ✅ CORRECTED: 6px -> 0.375rem */
+    display: inline-block;
+}
+
+.btn-register:hover,
+.btn-expert:hover {
+    background: #007a38;
+    color: #fff;
+}
+
+/* ===== Steps Section ===== */
+.sec-srvstep .shadow {
+    border-radius: 0.625rem; /* ✅ CORRECTED: 10px -> 0.625rem */
+}
+
+.radius10 {
+    border-radius: 0.625rem; /* ✅ CORRECTED: 10px -> 0.625rem */
+}
+
+/* ===== Responsive Fixes ===== */
+@media (max-width: 768px) {
+    .itr-bx,
+    .registraion_box {
+        margin-bottom: 1.25rem; /* ✅ CORRECTED: 20px -> 1.25rem */
+    }
+}

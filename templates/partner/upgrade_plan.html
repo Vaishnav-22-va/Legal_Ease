@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Upgrade Your Plan</h2>
+    <hr>
+
+    {% if current_subscription %}
+        <div class="alert alert-info">
+            <strong>Your Current Plan:</strong> {{ current_subscription.plan.name }} (Expires: {{ current_subscription.end_date|date:"d M Y"|default:"Never" }})
+        </div>
+    {% endif %}
+
+    <p>Please select a new plan from the options below.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="list-group">
+            {% for plan in plans %}
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="radio" name="plan_id" value="{{ plan.id }}" required>
+                    <strong>{{ plan.name }}</strong> - ₹{{ plan.price|floatformat:2 }}
+                    <p class="mb-1 text-muted">{{ plan.description }}</p>
+                </label>
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-success mt-3">Proceed to Payment</button>
+    </form>
+</div>
+{% endblock %}

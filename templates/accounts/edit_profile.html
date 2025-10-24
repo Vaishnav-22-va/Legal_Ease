@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* General Page Styles */
+    .profile-page-body {
+        background-color: #f8f9fa; /* Light gray background */
+        font-family: 'Inter', sans-serif;
+    }
+
+    .profile-container {
+        max-width: 700px; /* Adjusted width for a single column */
+        margin: 4rem auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    /* Header Banner */
+    .profile-header {
+        background: linear-gradient(135deg, #4a6de5, #2d4cb2);
+        color: #ffffff;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .profile-header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .profile-header p {
+        font-size: 1rem;
+        opacity: 0.9;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Form Area */
+    .profile-form {
+        padding: 40px 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #344767;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #4a6de5;
+        box-shadow: 0 0 0 3px rgba(74, 109, 229, 0.15);
+    }
+    
+    /* Special style for Customer ID */
+    .readonly-field {
+        background-color: #e9ecef;
+        padding: 12px 15px;
+        border-radius: 8px;
+        color: #495057;
+        font-weight: 500;
+    }
+
+    .btn-save {
+        width: 100%;
+        padding: 14px;
+        background-color: #2d4cb2;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.2s;
+    }
+
+    .btn-save:hover {
+        background-color: #4a6de5;
+    }
+
+    .errorlist {
+        color: #dc3545;
+        margin: 5px 0 0 0;
+        padding: 0;
+        font-size: 0.9em;
+        list-style: none;
+    }
+
+    .success-message {
+        background: #d1e7dd;
+        color: #0f5132;
+        border-radius: 8px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .profile-container {
+            margin: 2rem 1rem;
+        }
+        .profile-form {
+            padding: 30px 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-page-body">
+    <div class="profile-container">
+        <!-- Header Banner -->
+        <div class="profile-header">
+            <h1>Account Settings</h1>
+            <p>Update your personal information and manage your password.</p>
+        </div>
+
+        <!-- Form Area -->
+        <div class="profile-form">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="success-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+
+                <!-- Customer ID (Read-only) -->
+                <div class="form-group">
+                    <label>Customer ID</label>
+                    <div class="readonly-field">{{ user.customer_id }}</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_first_name">First Name</label>
+                    <input type="text" name="first_name" id="id_first_name" value="{{ form.first_name.value|default:user.first_name }}">
+                    {{ form.first_name.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_last_name">Last Name</label>
+                    <input type="text" name="last_name" id="id_last_name" value="{{ form.last_name.value|default:user.last_name }}">
+                    {{ form.last_name.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_email">Email</label>
+                    <input type="email" name="email" id="id_email" value="{{ form.email.value|default:user.email }}" required>
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone">Phone</label>
+                    <input type="text" name="phone" id="id_phone" value="{{ form.phone.value|default:user.phone }}">
+                    {{ form.phone.errors }}
+                </div>
+
+                <hr class="my-4">
+
+                <div class="form-group">
+                    <label for="id_password">New Password (leave blank to keep unchanged)</label>
+                    <input type="password" name="password" id="id_password" autocomplete="new-password">
+                    {{ form.password.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_confirm_password">Confirm New Password</label>
+                    <input type="password" name="confirm_password" id="id_confirm_password" autocomplete="new-password">
+                    {{ form.confirm_password.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_current_password">Current Password (to confirm changes)</label>
+                    <input type="password" name="current_password" id="id_current_password" required>
+                    {{ form.current_password.errors }}
+                </div>
+
+                <button type="submit" class="btn-save">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

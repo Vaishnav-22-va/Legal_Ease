@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+  .callback-page-container {
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    padding: 1.5rem 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(5, 119, 70, 0.15);
+    font-family: 'Poppins', sans-serif;
+  }
+  .callback-page-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .callback-page-header h1 {
+    font-weight: 700;
+    color: #002e63;  /* munshi coolblack */
+    font-size: 1.8rem;
+  }
+  .callback-page-header p {
+    font-weight: 500;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+  label {
+    font-weight: 600;
+  }
+  .form-control:focus {
+    border-color: #b57222; /* munshi orange */
+    box-shadow: 0 0 5px rgba(181, 114, 34, 0.5);
+  }
+  .btn-submit {
+    background-color: #b57222;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 30px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  .btn-submit:hover {
+    background-color: #002e63;
+  }
+  @media (max-width: 576px) {
+    .callback-page-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+    .callback-page-header h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+{% endblock extra_css %}
+
+{% block content %}
+<div class="callback-page-container">
+  <div class="callback-page-header">
+    <h1>Request a Free Call Back</h1>
+    <p>Fill out the form below and our expert team at Legal ease will connect with you within 12 hours to help with your needs.</p>
+  </div>
+  
+  <form id="callbackForm" method="POST" action="{% url 'core:callback_request_page' %}" autocomplete="off" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="modal_request_call_back_name">Your Name <sup class="text-danger">*</sup></label>
+      <input type="text" class="form-control" id="modal_request_call_back_name" name="name" placeholder="Enter Your Name" required>
+    </div>
+    <div class="mb-3">
+      <label for="modal_request_call_back_phone">Phone Number <sup class="text-danger">*</sup></label>
+      <input type="tel" class="form-control" id="modal_request_call_back_phone" name="mobile_no" placeholder="Enter Mobile Number" required pattern="[0-9]+" title="Enter valid phone number">
+    </div>
+    <div class="mb-3">
+      <label for="modal_request_call_back_email">Your Email ID</label>
+      <input type="email" class="form-control" id="modal_request_call_back_email" name="email" placeholder="Enter Email ID">
+    </div>
+    <div class="mb-3">
+      <label for="modal_request_call_back_subject">Subject <sup class="text-danger">*</sup></label>
+      <select class="form-select" id="modal_request_call_back_subject" name="subject" required>
+        <option value="" selected>-- Select Subject --</option>
+        <option value="Want to start Partnership Firm">Want to start Partnership Firm</option>
+        <option value="Want to start your own Nidhi Company">Want to start your own Nidhi Company</option>
+        <option value="GST Registration">Want to do GST Registration</option>
+        <option value="Want to plan your tax">Tax Planning</option>
+        <option value="Want to fill the ITR">Want to fill ITR</option>
+        <option value="Resend My ITR Copy on Email">Resend My ITR Copy on Email</option>
+        <option value="Not Interested">Not Interested</option>
+        <option value="Want to file Director KYC">Want to file Director KYC</option>
+        <option value="Want to change your partner">Want to change your partner</option>
+        <option value="Want to change the Address">Want to change the Address</option>
+        <option value="Want to get Factory License">Want to get Factory License</option>
+        <option value="Want to Develope your Website">Want to get your own Website</option>
+        <option value="Want to rank up your website on SEO">Get SEO Services</option>
+        <option value="Want to get UI/UX Design Services">Get UI/UX Design Services</option>
+        <option value="Want to get Logo & Branding Services">Get Logo & Branding Services</option>
+        <option value="Want to get IT Support">Get IT Support Services</option>
+        <option value="Want to get Cyber Security Services">Get Cyber Security Services</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="modal_request_call_back_message">Your Message <sup class="text-danger">*</sup></label>
+      <textarea class="form-control" id="modal_request_call_back_message" name="message" rows="3" placeholder="Enter Your Message" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-submit">Submit</button>
+  </form>
+</div>
+{% endblock content %}

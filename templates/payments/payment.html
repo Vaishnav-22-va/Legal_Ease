@@ -1,0 +1,58 @@
+<h2>Proceed to Payment</h2>
+<p><strong>Order ID:</strong> {{ order_id }}</p>
+<p><strong>Amount:</strong> ₹{{ amount }}</p>
+
+<button id="proceedBtn" class="btn btn-primary">Pay Now</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    // --- CONTROL TOGGLE ---
+    const useRazorpay = false; 
+
+    const proceedButton = document.getElementById("proceedBtn");
+    
+    // --- DYNAMIC URL BUILDER ---
+    // 1. Start with the base URL that works for all payments.
+    let successUrl = "{% url 'payments:payment_success' order_id=order_id %}?purpose={{ purpose }}&amount={{ amount }}";
+
+    // 2. Use a Django template tag to conditionally add the plan_id ONLY if it exists.
+    {% if plan_id %}
+    successUrl += "&plan_id={{ plan_id }}";
+    {% endif %}
+    // --- END DYNAMIC URL BUILDER ---
+
+
+    if (useRazorpay) {
+        // --- PRODUCTION LOGIC ---
+        const options = {
+            "key": "{{ RAZORPAY_KEY_ID }}",
+            "amount": {{ amount|floatformat:2 }} * 100,
+            "currency": "INR",
+            "name": "Legal Ease",
+            "description": "Payment for order {{ order_id }}",
+            "order_id": "{{ razorpay_order_id }}",
+            "handler": function(response) {
+                // 3. Redirect using the dynamically built URL.
+                window.location.href = successUrl;
+            },
+            "prefill": {
+                "name": "{{ request.user.get_full_name|default:'' }}",
+                "email": "{{ request.user.email|default:'' }}",
+            }
+        };
+
+        proceedButton.onclick = function() {
+            const rzp = new Razorpay(options);
+            rzp.open();
+        };
+
+    } else {
+        // --- MOCK PAYMENT LOGIC ---
+        proceedButton.onclick = function() {
+            alert("Payment successful! (Mock)");
+            
+            // 3. Redirect using the dynamically built URL.
+            window.location.href = successUrl;
+        };
+    }
+</script>

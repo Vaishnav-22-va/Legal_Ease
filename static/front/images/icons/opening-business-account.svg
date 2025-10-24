@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62.225" height="77.16" viewBox="0 0 62.225 77.16">
+  <g id="business-card-svgrepo-com" transform="translate(-28.126)">
+    <g id="Group_254" data-name="Group 254" transform="translate(28.126)">
+      <path id="Path_4508" data-name="Path 4508" d="M86.585,0H31.892a3.769,3.769,0,0,0-3.766,3.766v34.78a3.77,3.77,0,0,0,3.766,3.767h9.924V32.357a4.978,4.978,0,1,1,9.956,0v9.956H86.585a3.769,3.769,0,0,0,3.766-3.766V3.766A3.769,3.769,0,0,0,86.585,0ZM43.06,21.157a6.223,6.223,0,1,1,6.223-6.223A6.223,6.223,0,0,1,43.06,21.157Z" transform="translate(-28.126)" fill="#63ab3b"/>
+      <path id="Path_4509" data-name="Path 4509" d="M63.718,43.059a7.467,7.467,0,1,1,7.467-7.467A7.475,7.475,0,0,1,63.718,43.059Zm0-12.445A4.978,4.978,0,1,0,68.7,35.592,4.983,4.983,0,0,0,63.718,30.614Z" transform="translate(-48.784 -20.658)" fill="#333"/>
+      <rect id="Rectangle_1132" data-name="Rectangle 1132" width="27.379" height="2.489" transform="translate(27.379 7.467)" fill="#333"/>
+      <rect id="Rectangle_1133" data-name="Rectangle 1133" width="27.379" height="2.489" transform="translate(27.379 13.69)" fill="#333"/>
+      <rect id="Rectangle_1134" data-name="Rectangle 1134" width="27.379" height="2.489" transform="translate(27.379 19.912)" fill="#333"/>
+      <rect id="Rectangle_1135" data-name="Rectangle 1135" width="19.912" height="2.489" transform="translate(34.846 26.135)" fill="#333"/>
+      <path id="Path_4510" data-name="Path 4510" d="M94.291,149.462A19.311,19.311,0,0,1,75,130.172V104.66a6.223,6.223,0,0,1,12.445,0v11.2h1.245a8.712,8.712,0,0,1,0,17.423v-2.489a6.223,6.223,0,0,0,0-12.445H84.957V104.66a3.734,3.734,0,0,0-7.467,0v25.513a16.8,16.8,0,1,0,33.6,0V114.616h2.489v15.556A19.311,19.311,0,0,1,94.291,149.462Z" transform="translate(-62.556 -72.302)" fill="#333"/>
+    </g>
+  </g>
+</svg>

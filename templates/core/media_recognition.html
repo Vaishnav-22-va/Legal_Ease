@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div style="padding: 50px; font-family: 'Helvetica Neue', Arial, sans-serif; background: #f9f9f9; color: #333; min-height: 100vh;">
+
+    <h1 style="text-align:center; font-size: 2.5rem; margin-bottom: 50px; font-weight: 600;">Media Recognition</h1>
+
+    <div class="highlight-section">
+        <div class="highlight-track">
+            {% for item in highlighted_items %}
+            <div class="highlight-item">
+                <a href="{{ item.link }}">
+                    <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'path/to/default/image.png' %}{% endif %}" alt="{{ item.title }}">
+                </a>
+            </div>
+            {% empty %}
+            <p style="text-align: center; width: 100%;">No highlighted media items found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% for category in categories %}
+    <div class="category">
+        <h2>{{ category.name }}</h2>
+        <div class="category-grid">
+            {% for item in category.media_items.all %}
+            <div class="media-card">
+                <a href="{{ item.link }}">
+                    <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'path/to/default/image.png' %}{% endif %}" alt="{{ item.title }}">
+                    <p>{{ item.title }}</p>
+                </a>
+            </div>
+            {% empty %}
+            <p>No items in this category yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+/* Top Highlighted Section */
+.highlight-section {
+    overflow: hidden;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+}
+.highlight-track {
+    display: flex;
+    gap: 20px;
+    animation: scroll-highlight 20s linear infinite;
+}
+.highlight-item img {
+    width: 200px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.highlight-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Scroll animation */
+@keyframes scroll-highlight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Category Section */
+.category {
+    margin-bottom: 50px;
+}
+.category h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Category Grid */
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Media Card */
+.media-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1 1 250px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.media-card img {
+    border-radius: 6px;
+    width: 100%;
+    height: 120px; /* Reduced the fixed height for a better aspect ratio */
+    object-fit: contain; /* Ensures the whole image is visible without stretching */
+    margin-bottom: 10px;
+}
+.media-card p {
+    text-align: center;
+    font-weight: 500;
+    color: #34495e;
+}
+.media-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}Support Center | Legal Munshi{% endblock %}
+
+{% block content %}
+
+<style>
+  .support-center-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 14px 34px 14px;
+  }
+  .support-header-card {
+    background: #e7f0fb;
+    border-radius: 14px;
+    text-align: center;
+    padding: 34px 12px 32px 12px;
+    margin-bottom: 30px;
+  }
+  .support-header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a203e;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .support-header-desc {
+    color: #3c4b6e;
+    font-size: 1.12rem;
+    margin-bottom: 4px;
+  }
+  .support-card-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .support-card {
+    flex: 1 1 300px;
+    min-width: 248px;
+    max-width: 340px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 14px -3px #d4e0ee;
+    margin: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 18px 30px 18px;
+    text-align: center;
+    transition: box-shadow 0.18s;
+    border: none;
+  }
+  .support-card:hover {
+    box-shadow: 0 7px 26px -8px #aacff9;
+  }
+  .support-card i,
+  .support-card img.support-icon {
+    font-size: 2.3rem;
+    color: #21816d;
+    margin-bottom: 14px;
+    margin-top: -10px;
+  }
+  .support-card .support-type {
+    font-weight: 700;
+    font-size: 1.13rem;
+    color: #22405a;
+    margin-bottom: 8px;
+  }
+  .support-card .support-link {
+    font-size: 1.14rem;
+    color: #1b59a0;
+    font-weight: 700;
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .support-card .support-link:hover { color: #ff9100; }
+  .support-card .support-note {
+    font-size: 0.96rem;
+    color: #22405a;
+    margin-top: 16px;
+    opacity: 0.88;
+  }
+  .support-card .support-address {
+    font-size: 1.01rem;
+    color: #2c3740;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-weight: 400;
+    word-break: break-word;
+  }
+  @media (max-width: 900px) {
+    .support-card-row {
+      flex-direction: column;
+      align-items: center;
+    }
+    .support-card { margin: 14px 0; } 
+  }
+</style>
+
+<div class="support-center-wrap">
+
+  <div class="support-header-card">
+    <div class="support-header-title">
+      Support Center for All Your Tax Queries
+    </div>
+    <div class="support-header-desc">
+      Let us know how we can help?<br>
+      Call Us or Visit Help Center
+    </div>
+  </div>
+
+  <div class="support-card-row">
+    <!-- Quick Call -->
+    <div class="support-card">
+      <i class="fa fa-phone" aria-hidden="true"></i>
+      <div class="support-type">Quick Call</div>
+      <a href="tel:+917566441515" class="support-link">+91 9999999999</a>
+      <div class="support-note">Quick Response</div>
+    </div>
+    <!-- Email Support -->
+    <div class="support-card">
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+      <div class="support-type">Email Support</div>
+      <a href="mailto:support@legalease.in" class="support-link">support@legalease.in</a>
+      <div class="support-note">Response Time: 12 hrs</div>
+    </div>
+    <!-- WhatsApp -->
+    <div class="support-card">
+      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+      <div class="support-type">WhatsApp</div>
+      <a href="" class="support-link" target="_blank">+91 9999999999</a>
+      <div class="support-note">Response Time: 12 hrs</div>
+    </div>
+  </div>
+
+  <div class="support-card-row">
+    <!--Request Call Back -->
+    <div class="support-card">
+  <a href="{% url 'callback_request_page' %}" class="d-block text-decoration-none text-center">
+    <i class="fa fa-headphones" aria-hidden="true"></i>
+    <div class="support-type">Request Call Back</div>
+    <div class="support-note">Response Time: 12 hrs</div>
+  </a>
+</div>
+
+    <!-- Address -->
+    <div class="support-card">
+      <i class="fa fa-building" aria-hidden="true"></i>
+      <div class="support-type">Address</div>
+      <div class="support-address">
+        Gwalior (Madhya Pradesh)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- If you want the "Call Back Request" green floating tab, you can use this: -->
+
+
+ 
+</a>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm login-card">
+        <div class="row g-0">
+          <div class="col-md-6 d-none d-md-flex bg-primary text-white flex-column justify-content-center align-items-center p-4">
+            <img src="{% static 'common/images/logo1.png' %}" alt="Legal Ease Logo" class="img-fluid mb-3" style="max-width: 150px;">
+            <h4>Want to become a Partner?</h4>
+            <p>Join India’s largest online business startup platform and manage your services seamlessly.</p>
+            <a href="{% url 'partner:signup' %}" class="btn btn-outline-light mt-2">Register Now</a>
+          </div>
+
+          <div class="col-md-6 col-12 p-4">
+            <h3 class="mb-4 text-center">Login</h3>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" action="{% url 'accounts:login' %}">
+              {% csrf_token %}
+              
+              <div class="mb-3">
+                <label for="id_email" class="form-label">Email</label>
+                <input type="email" name="email" id="id_email" class="form-control" placeholder="Enter your email" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="id_password" class="form-label">Password</label>
+                <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter your password" required>
+              </div>
+
+              <div class="d-flex justify-content-between mb-3">
+                <small>New user? <a href="{% url 'accounts:signup' %}">Signup</a></small>
+               <small><a href="{% url 'accounts:reset_password' %}">Forgot Password?</a></small>
+              </div> 
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+
+              {% if form.errors %}
+                <div class="alert alert-danger mt-3">
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                      <div>{{ error }}</div>
+                    {% endfor %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                    <div>{{ error }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .login-card {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .login-card .bg-primary {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    text-align: center;
+  }
+  .login-card .bg-primary h4 {
+    font-weight: 600;
+  }
+  .login-card .bg-primary p {
+    font-size: 0.9rem;
+  }
+  .login-card .btn-outline-light {
+    border-width: 2px;
+  }
+</style>
+{% endblock %}

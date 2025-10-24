@@ -1,0 +1,29 @@
+# Django-specific files
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+legalmunshi_backend/settings.py  
+media/
+staticfiles/
+
+# Database files
+db.sqlite3
+db.sqlite3-journal
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.dblegalmunshi_backend/settings.py.save*

@@ -1,0 +1,119 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Dashboard - Admin{% endblock %}
+{% block page_heading %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Order Summary Cards -->
+<div class="dashboard-cards">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Total Orders</div>
+            <div class="card-icon total">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+        </div>
+        <div class="card-value">{{ total_orders }}</div>
+        <div class="card-footer">+12% from last month</div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Pending Orders</div>
+            <div class="card-icon pending">
+                <i class="fas fa-clock"></i>
+            </div>
+        </div>
+        <div class="card-value">{{ pending_orders }}</div>
+        <div class="card-footer">+8% from last month</div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Completed Orders</div>
+            <div class="card-icon completed">
+                <i class="fas fa-check-circle"></i>
+            </div>
+        </div>
+        <div class="card-value">{{ completed_orders }}</div>
+        <div class="card-footer">+15% from last month</div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Rejected Orders</div>
+            <div class="card-icon rejected">
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+        <div class="card-value">{{ rejected_orders }}</div>
+        <div class="card-footer">-5% from last month</div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div class="charts-section">
+    <div class="chart-card">
+        <div class="chart-header">
+            <div class="chart-title">Revenue Trends</div>
+            <div class="chart-actions">
+                <select>
+                    <option>Last 7 Days</option>
+                    <option>Last 30 Days</option>
+                    <option selected>Last 90 Days</option>
+                </select>
+            </div>
+        </div>
+        <div class="chart-placeholder">
+            [Revenue Chart Placeholder]
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <div class="chart-header">
+            <div class="chart-title">New Signups</div>
+            <div class="chart-actions">
+                <select>
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                </select>
+            </div>
+        </div>
+        <div class="chart-placeholder">
+            [Signups Chart Placeholder]
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="recent-activity">
+    <div class="activity-header">
+        <div class="activity-title">Recent Activity</div>
+        <div class="activity-actions">
+            <a href="{% url 'admin_panel:order_management' %}" class="btn btn-outline">View All</a>
+        </div>
+    </div>
+
+    {% if recent_orders %}
+        {% for order in recent_orders %}
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-message">
+                        Order <strong>#{{ order.pk }}</strong> — {{ order.service.title }} by {{ order.full_name }}
+                        ({{ order.get_status_display }})
+                    </div>
+                    <div class="activity-time">{{ order.created_at|timesince }} ago</div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No recent orders available.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

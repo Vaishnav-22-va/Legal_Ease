@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block title %}Partner Login - Legal Munshi{% endblock %}
+
+{% load static %}
+{% block extra_css %}
+<style>
+    /* Scoped styles for partner login page */
+    .partner-login-page a {
+        color: #3478f6;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .partner-login-page a:hover,
+    .partner-login-page a:focus {
+        text-decoration: underline;
+    }
+
+    /* Flex container for centering */
+    .partner-login-page .container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    /* Card */
+    .partner-login-page .login-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: row;
+        width: 850px;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* Left - Branding */
+    .partner-login-page .branding {
+        background-color: #2a3f5f;
+        color: white;
+        flex: 1.2;
+        padding: 2.5rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .partner-login-page .branding .logo {
+        max-width: 160px;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+    .partner-login-page .branding .branding-lines p {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        font-weight: 500;
+    }
+    .partner-login-page .branding .bottom-text {
+        font-size: 0.95rem;
+    }
+    .partner-login-page .branding .bottom-text a {
+        display: inline-block;
+        margin-top: 0.25rem;
+        padding: 0.25rem 0;
+        font-size: 1rem;
+        color: #b4d5ff;
+        border-bottom: 1.5px solid transparent;
+        transition: border-color 0.3s;
+    }
+    .partner-login-page .branding .bottom-text a:hover,
+    .partner-login-page .branding .bottom-text a:focus {
+        border-bottom-color: #b4d5ff;
+    }
+
+    /* Right - Login Form */
+    .partner-login-page .login-form-container {
+        flex: 1;
+        padding: 3rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #fff;
+    }
+    .partner-login-page .login-form-container h2 {
+        margin: 0 0 1.5rem 0;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #2a3f5f;
+        text-align: center;
+    }
+    .partner-login-page form {
+        display: flex;
+        flex-direction: column;
+    }
+    .partner-login-page label {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        font-size: 0.95rem;
+        color: #2a3f5f;
+    }
+    .partner-login-page input[type="text"],
+    .partner-login-page input[type="password"] {
+        padding: 0.65rem 1rem;
+        margin-bottom: 1.3rem;
+        border: 1.8px solid #ced4da;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+    .partner-login-page input[type="text"]:focus,
+    .partner-login-page input[type="password"]:focus {
+        outline: none;
+        border-color: #3478f6;
+        box-shadow: 0 0 5px #3478f6cc;
+    }
+    .partner-login-page button[type="submit"] {
+        padding: 0.75rem 1rem;
+        background-color: #3478f6;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: background-color 0.3s;
+    }
+    .partner-login-page button[type="submit"]:hover,
+    .partner-login-page button[type="submit"]:focus {
+        background-color: #245bb5;
+    }
+
+    /* --- FIX: Added style for the forgot password link --- */
+    .partner-login-page .forgot-password {
+        text-align: right;
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    /* Error message styling */
+    .partner-login-page .error-message {
+        background-color: #ffe5e5;
+        border: 1.5px solid #ff5c5c;
+        color: #b00000;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .partner-login-page .login-card {
+            flex-direction: column;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        .partner-login-page .branding {
+            flex: none;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .partner-login-page .branding .logo {
+            margin: 0 auto 1.5rem auto;
+        }
+        .partner-login-page .branding .branding-lines p {
+            font-size: 1rem;
+        }
+        .partner-login-page .branding .bottom-text a {
+            font-size: 1.05rem;
+        }
+        .partner-login-page .login-form-container {
+            padding: 2rem 2rem 3rem 2rem;
+        }
+        .partner-login-page .login-form-container h2 {
+            font-size: 1.6rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="partner-login-page">
+    <div class="container">
+        <div class="login-card" role="main" aria-labelledby="partner-login">
+            <!-- Left Column: Branding -->
+            <section class="branding" aria-label="Partner portal branding information">
+                <div>
+                    <img src="{% static 'common/images/logo1.png' %}" alt="Legal Munshi Logo" class="logo" />
+                    <div class="branding-lines">
+                        <p>Empower Your Business with Legal Ease</p>
+                        <p>Join thousands of trusted partners across India</p>
+                        <p>Offer services, track clients, and grow with us.</p>
+                    </div>
+                </div>
+                <div class="bottom-text">
+                    <p>Not a Partner Yet?</p>
+                    <a href="{% url 'partner:signup' %}" aria-label="Register as a Partner">Register a Partner &rarr;</a>
+                </div>
+            </section>
+
+            <!-- Right Column: Login Form -->
+            <section class="login-form-container" aria-label="Partner login form">
+                <h2 id="partner-login">Partner Login</h2>
+
+                {% if error %}
+                <div class="error-message" role="alert" aria-live="assertive">{{ error }}</div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'partner:login' %}" novalidate>
+                    {% csrf_token %}
+                    <label for="id_email">Email</label>
+                    <input type="text" id="id_email" name="email" required autocomplete="username" placeholder="Email" />
+                    <label for="id_password">Password</label>
+                    <input type="password" id="id_password" name="password" required autocomplete="current-password" placeholder="Password" />
+
+                    <button type="submit">Login</button>
+                    
+                    <!-- --- FIX: Added the Forgot Password link here --- -->
+                    <div class="forgot-password">
+                        <a href="{% url 'partner:reset_password' %}">Forgot Password?</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

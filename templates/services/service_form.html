@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(102deg, #eef2f8 40%, #e1f7f2 100%);
+        font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+    }
+    .main-grid {
+        max-width: 900px;
+        margin: 0 auto 3rem auto;
+        padding: 0 1vw 3rem 1vw;
+        min-height: 80vh;
+    }
+    .colorful-header {
+        width: 100vw;
+        left: 0;
+        background: linear-gradient(90deg, #2563eb 50%, #f59e42 100%);
+        color: #fff;
+        padding: 2.4rem 0 2.6rem 0;
+        margin-bottom: 0.7rem;
+        box-shadow: 0 5px 15px -5px #ccd7e7;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -.02em;
+        text-align: center;
+    }
+    .form-panel {
+        background: #fff;
+        border-radius: 1.2rem;
+        box-shadow: 0 6px 32px rgba(29,82,181,0.09);
+        border: 1.4px solid #ecf0fc;
+        padding: 2.7rem 2.8rem 2.3rem 2.8rem;
+        min-width: 330px;
+        margin-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-panel form p,
+    .form-panel form .mb-4,
+    .form-panel form .py-6 {
+        margin-bottom: 1.55rem;
+    }
+    .form-panel form label {
+        font-weight: 600;
+        color: #2f3a53;
+        margin-bottom: 0.21rem;
+        display: block;
+        font-size: 1.01rem;
+    }
+    .form-panel form input[type="text"],
+    .form-panel form input[type="email"],
+    .form-panel form textarea,
+    .form-panel form select {
+        width: 100%;
+        padding: 0.89rem 1.15rem;
+        border: 1.8px solid #d4d9ef;
+        border-radius: 0.56rem;
+        font-size: 1.01rem;
+        background: #f7f9fd;
+        color: #1e2631;
+        margin-top: 0.16rem;
+        transition: border-color .15s, box-shadow .15s;
+    }
+    .form-panel form input:focus,
+    .form-panel form textarea:focus,
+    .form-panel form select:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px #6366f140;
+        outline: none;
+    }
+    /* Modern file upload styling */
+    .modern-file {
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+    .modern-file input[type="file"] {
+        opacity: 0;
+        width: 100%;
+        height: 48px;
+        position: absolute;
+        left: 0; top: 0;
+        z-index: 2;
+        cursor: pointer;
+    }
+    .modern-file-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-start;
+        padding: 0.88rem 1.05rem;
+        color: #2961d9;
+        border-radius: 0.57rem;
+        font-weight: 700;
+        background: #eff6ff;
+        border: 1.4px dashed #b9c6f3;
+        font-size: 1.06rem;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        transition: background .15s, border .15s;
+    }
+    .modern-file-label:hover {
+        background: #e0e7ff;
+        border-color: #6366f1;
+        color: #212687;
+    }
+    .section-divider {
+        border-bottom: 1.2px solid #e5e7eb;
+        margin: 2.3rem 0 2.1rem 0;
+    }
+    .submit-button {
+        width: 100%;
+        padding: 1.11rem;
+        font-size: 1.21rem;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(90deg,#6366f1 60%, #f59e42 100%);
+        border: none;
+        border-radius: 0.8rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        margin-bottom: 0.3rem;
+        transition: background 0.16s, box-shadow 0.16s;
+        box-shadow: 0 3px 12px rgb(99 102 241 / 11%);
+        letter-spacing: .01em;
+    }
+    .submit-button:hover {
+        background: linear-gradient(90deg,#4338ca 60%, #ed8936 100%);
+    }
+    @media (max-width: 700px) {
+        .form-panel {
+            max-width: 95vw;
+            padding: 1.8rem 1.6rem 1.6rem 1.6rem;
+        }
+    }
+    .notes-panel {
+        max-width: 900px;
+        margin: 1.5rem auto 3rem auto;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        background-color: #fff0f0;
+        border: 1px solid #f5c6cb;
+        box-shadow: 0 4px 12px rgba(245, 38, 38, 0.15);
+        color: #b91c1c;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .notes-panel h2 {
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border-bottom: 2px solid #dc2626;
+        padding-bottom: 0.3rem;
+    }
+    .notes-panel .note-list .note-item {
+        margin-bottom: 0.85rem;
+    }
+    .notes-panel .note-list .note-item h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+    }
+</style>
+
+<div class="colorful-header">
+    Nidhi Company Application via Legal Ease
+</div>
+<div class="main-grid">
+    <main>
+        <div class="form-panel">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <p>
+                    <label for="{{ form.full_name.id_for_label }}">Full Name</label>
+                    {{ form.full_name }}
+                </p>
+                <p>
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email }}
+                </p>
+                <p>
+                    <label for="{{ form.phone.id_for_label }}">Phone</label>
+                    {{ form.phone }}
+                </p>
+
+                {% for field in form.visible_fields %}
+                    {% if "dynamic_field_" in field.name %}
+                        <p>
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small style="color: #555;">{{ field.help_text }}</small>
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="section-divider"></div>
+                <div class="py-6" style="margin-bottom:32px;">
+                    <h2 style="font-size:1.09rem;font-weight:700;margin-bottom:1.1rem;color:#354254;">Document Upload</h2>
+                    <div id="documentFields">
+                        {% for field in form.visible_fields %}
+                            {% if "document_" in field.name %}
+                                <div class="mb-4">
+                                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium">{{ field.label }}</label>
+                                    <div class="modern-file">
+                                        <label class="modern-file-label">
+                                            <svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 16V4m0 0l4 4m-4-4L8 8m8 8v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4"></path></svg>
+                                            Choose File
+                                            {{ field }}
+                                        </label>
+                                    </div>
+                                    {% if field.help_text %}
+                                        <p class="mt-1 text-sm" style="color:#6b7280;">{{ field.help_text }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="section-divider"></div>
+                <button type="submit" class="submit-button">Submit Application</button>
+            </form>
+        </div>
+
+        {% if dynamic_notes %}
+        <div class="notes-panel">
+            <h2>Important Notes</h2>
+            <div class="note-list">
+                {% for note in dynamic_notes %}
+                    <div class="note-item">
+                        <h4>{{ note.title }}</h4>
+                        <p>{{ note.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}

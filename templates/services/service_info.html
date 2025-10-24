@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta_tags %}
+ {{ structured_data_dict|json_script:"service-schema" }}
+    <meta name="description" content="{{ service.short_description|truncatechars:160 }}">
+    
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <meta property="og:title" content="{{ service.title }}">
+    <meta property="og:description" content="{{ service.short_description|truncatechars:160 }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if service.hero_image %}
+        <meta property="og:image" content="{{ service.hero_image.url }}">
+
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Basic styling for the service info page */
+    .service-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .service-details {
+        flex: 2; /* Takes up 2/3 of the space */
+        min-width: 300px;
+    }
+
+    .service-pricing-box {
+        flex: 1; /* Takes up 1/3 of the space */
+        min-width: 300px;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        align-self: flex-start; /* Aligns to the top */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .service-pricing-box h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-pricing-box p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .service-pricing-box .price-value {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .service-hero-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    .proceed-button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #28a745;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+
+    .proceed-button:hover {
+        background-color: #218838;
+        color: white;
+    }
+    
+    /* --- NEW STYLES FOR DOCUMENTS SECTION --- */
+    .documents-section {
+        margin-top: 2rem;
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .documents-section h4 {
+        margin-top: 0;
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 0.75rem;
+    }
+
+    .documents-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .documents-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .documents-list li:last-child {
+        border-bottom: none;
+    }
+
+    .document-optional-badge {
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.2rem 0.5rem;
+        background-color: #6c757d;
+        color: white;
+        border-radius: 10px;
+        margin-left: 0.5rem;
+    }
+    /* --- END NEW STYLES --- */
+
+</style>
+
+<div class="service-container">
+
+    <div class="service-details">
+        <h1>{{ service.title }} online with Legal Ease</h1>
+        <hr>
+
+        {% if service.hero_image %}
+            <img src="{{ service.hero_image.url }}" alt="{{ service.title }}" class="service-hero-image" />
+        {% endif %}
+
+        <p>{{ service.long_description|linebreaks }}</p>
+
+        {% if required_documents %}
+            <div class="documents-section">
+                <h4>Documents You'll Need 📋</h4>
+                <ul class="documents-list">
+                    {% for doc in required_documents %}
+                    <li>
+                        <strong>{{ doc.name }}</strong>
+                        {% if not doc.is_mandatory %}
+                            <span class="document-optional-badge">Optional</span>
+                        {% endif %}
+                        
+                        {% if doc.description %}
+                            <p class="mb-0 mt-1 text-muted small">{{ doc.description }}</p>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        </div>
+
+<div class="service-pricing-box">
+    <h3>Pricing Summary</h3>
+
+    {% if display_message %}
+        {# This will show for partners with an active subscription plan #}
+        <p><span class="price-value">{{ display_message }}</span></p>
+
+    {% elif price is not None %}
+        {# This will show for regular customers and 'per order' partners #}
+        <p>Fee: <span class="price-value">₹{{ price|floatformat:2 }}</span></p>
+
+    {% endif %}
+
+    {# --- CORRECTED APPLY BUTTON LOGIC --- #}
+{% if request.user.is_authenticated %}
+
+    {% if request.user.partner %}
+        <a href="{% url 'services:apply' slug=service.slug %}?customer_id={{ customer_id }}" class="proceed-button">
+            Create Order for Customer
+        </a>
+    {% else %}
+        <a href="{% url 'services:apply' slug=service.slug %}" class="proceed-button">
+            Apply Now
+        </a>
+    {% endif %}
+
+{% else %}
+    <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="proceed-button">
+        Login to Apply
+    </a>
+{% endif %}
+
+</div>
+
+{% endblock %}

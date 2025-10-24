@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Complete Your Service Order</h2>
+    <hr>
+    
+    <div class="card">
+        <div class="card-header">Order Summary</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ order.service.title }}</h5>
+            <h4 class="card-text">Total Amount: ₹{{ order.price|floatformat:2 }}</h4>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">Choose Payment Method</div>
+        <div class="card-body">
+            <form method="post" action="{% url 'services:process_payment' order_id=order.id %}">
+                {% csrf_token %}
+                
+                {# --- Case 1: Partner has a WALLET_CREDIT plan --- #}
+                {% if is_partner and plan_type == 'WALLET_CREDIT' %}
+                    <p>Your plan requires you to pay from your wallet.</p>
+                    <p><strong>Your Wallet Balance: ₹{{ wallet_balance|floatformat:2 }}</strong></p>
+                    
+                    {% if wallet_balance >= order.price %}
+                        <button type="submit" name="payment_method" value="wallet" class="btn btn-primary">Pay with Wallet</button>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            Your wallet balance is too low.
+                            <a href="{% url 'partner:wallet_top_up' %}" class="alert-link">Please top up your wallet.</a>
+                        </div>
+                    {% endif %}
+                
+                {# --- Case 2: Partner has a SUBSCRIPTION plan --- #}
+                {% elif is_partner %}
+                    <p>You can pay securely via our payment gateway or use your available wallet balance.</p>
+                    
+                    <button type="submit" name="payment_method" value="gateway" class="btn btn-success">Pay with Payment Gateway</button>
+                    
+                    {% if wallet_balance >= order.price %}
+                        <hr>
+                        <p><strong>Or use your wallet balance: ₹{{ wallet_balance|floatformat:2 }}</strong></p>
+                        <button type="submit" name="payment_method" value="wallet" class="btn btn-primary">Pay with Wallet</button>
+                    {% endif %}
+                
+                {# --- Case 3: B2C Customer --- #}
+                {% else %}
+                    <p>Please proceed to our secure payment gateway to complete your order.</p>
+                    <button type="submit" name="payment_method" value="gateway" class="btn btn-success">Pay with Payment Gateway</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

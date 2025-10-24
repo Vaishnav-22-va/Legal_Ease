@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Legal Munshi{% endblock %}
+
+{% block content %}
+
+<style>
+/* ===== Minimal Service Grid ===== */
+/* ============================================= */
+/* Upgraded Service Grid Styles (with shadows & spacing) */
+/* ============================================= */
+
+:root {
+    --munshi-blue: #002e63;
+    --munshi-orange: #a1551a;
+}
+
+/* 1. The Grid Container (.serlist) */
+/* Replaced borders with 'gap' for modern spacing */
+.serlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    /* ✅ This creates space between cards */
+    gap: 1.5rem; 
+    /* Default to 5 columns on large screens */
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* 2. The Service Card (li) */
+/* This is where the shadow and rounded corners are applied */
+.serlist li {
+    background-color: #fff;
+    /* ✅ Adds rounded corners */
+    border-radius: 12px; 
+    /* ✅ Adds the shadow effect */
+    box-shadow: 0 4px 15px rgba(0, 46, 99, 0.07);
+    transition: all 0.3s ease;
+    /* ✅ Important: Keeps the flip effect inside the rounded corners */
+    overflow: hidden; 
+    position: relative;
+}
+
+/* ✅ Hover effect to "lift" the card */
+.serlist li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 46, 99, 0.12);
+}
+
+
+/* 3. The Flip Animation Structure (Untouched Logic) */
+.ch-item {
+    width: 100%;
+    padding-top: 100%; /* Creates a square aspect ratio */
+    position: relative;
+    cursor: pointer;
+}
+
+.ch-info-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 800px;
+}
+
+.ch-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: all 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.ch-info { /* Front face */
+    background-color: #fff;
+}
+
+.ch-info-back { /* Back face */
+    background-color: var(--munshi-orange);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* Hover effect for the flip */
+.ch-info-wrap:hover .ch-info {
+    transform: rotateY(180deg);
+}
+.ch-info-wrap:hover .ch-info-back {
+    transform: rotateY(0deg);
+}
+
+
+/* 4. Content Inside the Cards (Icons and Text) */
+.ch-info .icon {
+    margin-bottom: 15px;
+    color: var(--munshi-blue);
+    font-size: 40px;
+}
+.ch-info .icon img {
+    height: 40px;
+}
+
+.ch-info a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.ch-info-back a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+}
+.ch-info-back a p {
+     color: white !important;
+     margin: 0;
+}
+
+
+/* 5. Responsive Adjustments for Tablets and Mobile */
+@media (max-width: 991px) {
+    .serlist {
+        /* 3 columns for tablets */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .serlist {
+        /* 2 columns for mobile phones */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+</style>
+
+<div class="site-main">
+    <section class="section sec-services pt-4 pt-md-5">
+        <div class="container">
+            <div class="content">
+                <div class="text-center text-black mb-4">
+                    <h1 class="fs-3 mb-0 mobile-size">
+                        India's Largest & Most Trusted Online Business Startup Platform
+                    </h1>
+                </div>
+
+                <ul class="serlist">
+                    {% for service in featured_services|slice:":20" %}
+                    <li>
+    <div class="ch-item">
+        <div class="ch-info-wrap">
+
+            <div class="ch-face ch-info">
+                <div class="icon">
+                    {% if service.icon_class %}
+                        <i class="{{ service.icon_class }}"></i>
+                    {% elif service.icon %}
+                        <img src="{{ service.icon.url }}" alt="{{ service.title }} icon" style="height:40px;">
+                    {% else %}
+                        <i class="fas fa-cogs"></i>
+                    {% endif %}
+                </div>
+                <a href="{% url 'services:info' service.slug %}">
+                    <span>{{ service.title }}</span>
+                </a>
+            </div>
+
+            <div class="ch-face ch-info-back">
+                <a href="{% url 'services:info' service.slug %}">
+                    {{ service.short_description|linebreaks }}
+                </a>
+            </div>
+
+        </div>
+    </div>
+</li>
+                   
+                    {% empty %}
+                    <li>No featured services available.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

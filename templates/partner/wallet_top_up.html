@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Top Up Wallet - Partner Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 600px;">
+    <h1 class="h2 mb-4 text-center">Top Up Your Wallet</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{% url 'partner:wallet_top_up' %}">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount to Add (₹)</label>
+                    <input type="number" class="form-control form-control-lg" id="amount" name="amount" min="100" step="50" placeholder="e.g., 5000" required>
+                    <div class="form-text">
+                        Enter the amount you wish to add to your wallet.
+                    </div>
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Proceed to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="text-center mt-3">
+        <a href="{% url 'partner:wallet_details' %}">Cancel and go back to wallet</a>
+    </div>
+</div>
+{% endblock %}

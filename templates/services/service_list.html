@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #0056b3;
+        --secondary-color: #3498db;
+        --text-dark: #2c3e50;
+        --text-light: #7f8c8d;
+        --bg-light: #f8f9fa;
+        --border-color: #e9ecef;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .service-page-body {
+        background-color: #f4f7f6;
+    }
+
+    /* Header Section */
+    .service-header {
+        text-align: center;
+        padding: 3rem 1rem;
+        background-color: var(--bg-light);
+        border-bottom: 1px solid var(--border-color);
+    }
+    .service-header h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+    .service-header p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto 1.5rem auto;
+    }
+    .search-bar {
+        max-width: 500px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .search-bar input {
+        width: 100%;
+        padding: 12px 20px 12px 45px;
+        border-radius: 50px;
+        border: 1px solid var(--border-color);
+        font-size: 1rem;
+    }
+    .search-bar .bi-search {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-light);
+    }
+
+    /* Category Navigation */
+    .category-nav-wrapper {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scrollbar-width: none; /* Firefox */
+    }
+    .category-nav-wrapper::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    .category-nav {
+        display: inline-flex;
+        padding: 1.5rem 0;
+        justify-content: center;
+        width: 100%;
+    }
+    .category-tab {
+        padding: 0.5rem 1.5rem;
+        margin: 0 0.5rem;
+        border-radius: 50px;
+        color: var(--text-dark);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+    }
+    .category-tab:hover {
+        background-color: var(--border-color);
+    }
+    .category-tab.active {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border-color: var(--primary-color);
+    }
+
+    /* Services Grid */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 2rem 0;
+    }
+    .service-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px var(--shadow-color);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        position: relative;
+    }
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .service-card-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+    }
+    .service-card-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+    .service-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+    .service-card p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    .service-card-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .service-price {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary-color);
+    }
+    .service-price .original-price {
+        text-decoration: line-through;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+    }
+    .btn-details {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.2s;
+    }
+    .btn-details:hover {
+        background-color: #004494;
+    }
+    .badge-popular {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: var(--secondary-color);
+        color: white;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 5px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+        .service-header h1 {
+            font-size: 2.2rem;
+        }
+    }
+
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="service-page-body">
+    <div class="container">
+        <!-- Header Section -->
+        <header class="service-header">
+            <h1>Our Services</h1>
+            <p>Browse through our wide range of services, categorized for your convenience.</p>
+            <div class="search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" id="serviceSearchInput" placeholder="Search services...">
+            </div>
+        </header>
+
+        <!-- Category Navigation -->
+        <nav class="category-nav-wrapper">
+            <div class="category-nav">
+                <div class="category-tab active" data-category="all">All Services</div>
+                {% for category in categories %}
+                    <div class="category-tab" data-category="{{ category.name }}">{{ category.name }}</div>
+                {% endfor %}
+            </div>
+        </nav>
+
+        <!-- Services Grid -->
+        <main class="services-grid">
+            {% for category in categories %}
+                {% for service in category.services.all %}
+                    {% if service.is_active %}
+                    <!-- Add data-category and data-title for filtering -->
+                    <div class="service-card" data-category="{{ category.name }}" data-title="{{ service.title|lower }}">
+                        {% if service.is_featured %}
+                            <span class="badge-popular">Popular</span>
+                        {% endif %}
+                        <div class="service-card-body">
+                            {% if service.icon %}
+                            <img src="{{ service.icon.url }}" alt="{{ service.title }} icon" class="service-card-icon">
+                            {% endif %}
+                            <h3>{{ service.title }}</h3>
+                            <p>{{ service.short_description|truncatewords:15 }}</p>
+                        </div>
+                        <div class="service-card-footer">
+                            <div class="service-price">
+                               {% if is_partner_logged_in %}
+                                    <span>₹{{ service.price_partner_default|floatformat:2 }}</span>
+                                    <span class="original-price">₹{{ service.price_user|floatformat:2 }}</span>
+                                {% else %}
+                                    <span>Starting from ₹{{ service.price_user|floatformat:2 }}</span>
+                                {% endif %}
+                            </div>
+                            <!-- Correct the URL link -->
+                            <a href="{% url 'services:info' service.slug %}?customer_id={{ customer_id }}" class="btn-details">View Details</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </main>
+    </div>
+</div>
+
+<!-- --- JAVASCRIPT FOR INTERACTIVITY --- -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('serviceSearchInput');
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    // --- Category Filtering Logic ---
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Update active tab style
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const selectedCategory = this.getAttribute('data-category');
+            filterServices(selectedCategory, searchInput.value);
+        });
+    });
+
+    // --- Live Search Logic ---
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+        filterServices(activeCategory, searchTerm);
+    });
+
+    // --- Main Filter Function ---
+    function filterServices(category, searchTerm) {
+        serviceCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardTitle = card.getAttribute('data-title');
+
+            const categoryMatch = (category === 'all' || cardCategory === category);
+            const searchMatch = cardTitle.includes(searchTerm);
+
+            if (categoryMatch && searchMatch) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+});
+</script>
+
+{% endblock %}

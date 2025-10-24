@@ -1,0 +1,68 @@
+<!-- partner/templates/partner/verify_otp.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+        .otp-container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .otp-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .otp-container label {
+            display: block;
+            margin-top: 15px;
+        }
+        .otp-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .otp-container button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .otp-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST" action="{% url 'partner:verify_otp' %}">
+    {% csrf_token %}
+
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+
+    <label>Email OTP:</label><br>
+    <input type="text" name="email_otp" required><br><br>
+
+    <label>Phone OTP:</label><br>
+    <input type="text" name="phone_otp" required><br><br>
+
+    <button type="submit">Verify OTP</button>
+</form>
+</body>

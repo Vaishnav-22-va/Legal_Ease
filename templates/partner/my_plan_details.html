@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>My Current Plan</h2>
+    <hr>
+
+    {% if subscription %}
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">{{ subscription.plan.name }}</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Description:</strong> {{ subscription.plan.description }}</p>
+                <p><strong>Price:</strong> ₹{{ subscription.plan.price|floatformat:2 }}</p>
+                <p><strong>Subscription Active Since:</strong> {{ subscription.start_date|date:"d M Y" }}</p>
+                <p><strong>Access Valid Until:</strong> {{ subscription.end_date|date:"d M Y"|default:"Lifetime" }}</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            You do not have an active plan.
+            <a href="{% url 'partner:upgrade_plan' %}" class="alert-link">Click here to choose a plan.</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

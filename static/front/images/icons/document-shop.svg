@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56.714" height="75.791" viewBox="0 0 56.714 75.791">
+  <g id="documents-svgrepo-com" transform="translate(-38.385)">
+    <rect id="Rectangle_1125" data-name="Rectangle 1125" width="43.047" height="62.124" transform="translate(40.249 1.864)" fill="#63ab3b"/>
+    <path id="Path_4479" data-name="Path 4479" d="M118.992,47.5V99.684H85.885v9.94h43.047V47.5Z" transform="translate(-35.697 -35.697)" fill="#01458e"/>
+    <g id="Group_249" data-name="Group 249" transform="translate(38.385)">
+      <path id="Path_4480" data-name="Path 4480" d="M93.235,9.94H85.159V1.864A1.864,1.864,0,0,0,83.3,0H40.249a1.864,1.864,0,0,0-1.864,1.864V63.987a1.864,1.864,0,0,0,1.864,1.864h8.076v8.076a1.864,1.864,0,0,0,1.864,1.864H93.235A1.864,1.864,0,0,0,95.1,73.927V11.8A1.864,1.864,0,0,0,93.235,9.94ZM42.112,3.727H81.432v58.4H42.112ZM91.371,72.063H52.052V65.851H83.3a1.864,1.864,0,0,0,1.864-1.864V13.667h6.212Z" transform="translate(-38.385)" fill="#22313f"/>
+      <path id="Path_4481" data-name="Path 4481" d="M86.829,67.44h19.9a1.864,1.864,0,1,0,0-3.727h-19.9a1.864,1.864,0,1,0,0,3.727Z" transform="translate(-73.39 -47.881)" fill="#fff"/>
+      <path id="Path_4482" data-name="Path 4482" d="M86.829,110.938h19.9a1.864,1.864,0,0,0,0-3.727h-19.9a1.864,1.864,0,0,0,0,3.727Z" transform="translate(-73.39 -80.57)" fill="#fff"/>
+      <path id="Path_4483" data-name="Path 4483" d="M86.829,154.436h19.9a1.864,1.864,0,1,0,0-3.727h-19.9a1.864,1.864,0,1,0,0,3.727Z" transform="translate(-73.39 -113.259)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

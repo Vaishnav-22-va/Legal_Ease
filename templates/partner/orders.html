@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <h3 class="mb-4">Client Orders</h3>
+
+  <form method="get" class="mb-3">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search by service or client"
+           class="form-control" style="max-width: 400px;">
+  </form>
+
+  {% if orders %}
+    <div class="list-group">
+      {% for order in orders %}
+        <a href="{% url 'partner_order_detail' order.id %}" class="list-group-item list-group-item-action">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong>{{ order.service.title }}</strong> <br>
+              <small>Client: {{ order.user.full_name }} ({{ order.user.email }})</small>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-info">{{ order.status }}</span><br>
+              <small>{{ order.created_at|date:"M d, Y" }}</small>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No client orders found.</p>
+  {% endif %}
+</div>
+{% endblock %}

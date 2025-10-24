@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.94" height="66.469" viewBox="0 0 46.94 66.469">
+  <g id="Group_1340" data-name="Group 1340" transform="translate(-433.531 -842.766)">
+    <g id="_6290879561571183076" data-name="6290879561571183076" transform="translate(435.031 844.266)">
+      <path id="Path_5293" data-name="Path 5293" d="M36.294,3V17.647H50.94L36.294,3H7V66.469H50.94V17.647" transform="translate(-7 -3)" fill="none" stroke="#123c57" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3"/>
+      <line id="Line_366" data-name="Line 366" x2="20" transform="translate(6.97 23.735)" fill="none" stroke="#63ab3b" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_367" data-name="Line 367" x2="20" transform="translate(6.97 28.735)" fill="none" stroke="#63ab3b" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_368" data-name="Line 368" x2="15" transform="translate(6.97 32.735)" fill="none" stroke="#63ab3b" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+    <g id="Ellipse_269" data-name="Ellipse 269" transform="translate(454 883)" fill="#fff" stroke="#63ab3b" stroke-width="2">
+      <circle cx="9" cy="9" r="9" stroke="none"/>
+      <circle cx="9" cy="9" r="8" fill="none"/>
+    </g>
+    <text id="_" data-name="+" transform="translate(458 897)" fill="#63ab3b" font-size="14" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="0" y="0">+</tspan></text>
+  </g>
+</svg>

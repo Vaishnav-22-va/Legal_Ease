@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Partner Signup - Legal Munshi{% endblock %}
+
+{% block extra_head %}
+    <title>Partner Signup - Ease</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-message { color: #EF4444; font-size: 0.875rem; margin-top: 0.25rem; }
+        .success-message { color: #16A34A; font-size: 0.875rem; margin-top: 0.25rem; }
+        .otp-field { display: none; }
+        .otp-field.show { display: block; }
+        .section-divider { border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+        .form-stage { display: none; }
+        .form-stage.active { display: block; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-4xl">
+        <!-- Main Heading -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">Partner Registration</h2>
+            <p class="mt-2 text-sm text-gray-600">Join Legal Ease’s Partner Program to elevate your services and revenue.</p>
+        </div>
+
+        <!-- Registration Form Box -->
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div class="p-8">
+                <form id="signupForm" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    
+                    <div id="stage-1" class="form-stage active">
+                        <div class="pb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Business Details</h2>
+                            <div id="general-messages" class="mb-4"></div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Business Details Fields -->
+                                <div>
+                                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                    <input type="text" id="fullName" name="full_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="businessType" class="block text-sm font-medium text-gray-700">Business Type</label>
+                                    <select id="businessType" name="business_type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <option value="" disabled selected>Select your business type</option>
+<option value="individual">Individual / Sole Proprietorship</option>
+<option value="one-person-company">One Person Company (OPC)</option>
+<option value="partnership">Partnership</option>
+<option value="limited-partnership">Limited Partnership</option>
+<option value="llp">Limited Liability Partnership (LLP)</option>
+<option value="private-ltd">Private Limited Company</option>
+<option value="public-ltd">Public Limited Company</option>
+<option value="joint-venture">Joint Venture</option>
+<option value="branch-office">Branch Office</option>
+<option value="holding-company">Holding Company</option>
+<option value="cooperative">Cooperative Society</option>
+<option value="nonprofit">Nonprofit / NGO / Trust</option>
+<option value="franchise">Franchise</option>
+<option value="freelancer">Freelancer / Gig Worker</option>
+<option value="subsidiary">Subsidiary</option>
+<option value="association">Association / Club / Society</option>
+<option value="social-enterprise">Social Enterprise</option>
+<option value="government">Government Entity</option>
+<option value="government">other</option>
+
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="businessName" class="block text-sm font-medium text-gray-700">Business Name</label>
+                                    <input type="text" id="businessName" name="business_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+                                    <select id="state" name="state" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <option value="" disabled selected>Select your state</option>
+                                        {% for state in states %}
+                                        <option value="{{ state }}">{{ state }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                                    <input type="text" id="city" name="city" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="pincode" class="block text-sm font-medium text-gray-700">Pincode</label>
+                                    <input type="number" id="pincode" name="pincode" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                                    <textarea id="address" name="address" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                                </div>
+                                
+                                <!-- Contact Fields with OTP -->
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                    <div class="flex mt-1">
+                                        <input type="tel" id="phone" name="phone" required class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                    <div class="flex mt-1">
+                                        <input type="email" id="email" name="email" required class="flex-1 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <button type="button" id="sendEmailOtpBtn" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-r-md font-medium text-white hover:bg-indigo-700">Send OTP</button>
+                                    </div>
+                                    <div id="emailOtpStatus" class="text-sm mt-1"></div>
+                                    <div id="emailOtpField" class="otp-field mt-2">
+                                        <label for="emailOtp" class="block text-sm font-medium text-gray-700">Enter OTP</label>
+                                        <input type="text" id="emailOtp" name="email_otp" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                    </div>
+                                </div>
+                                
+                                <!-- Password Fields with Visibility Toggle -->
+                                <div>
+                                    <label for="password" class="block text-sm font-medium text-gray-700">Create Password</label>
+                                    <div class="relative mt-1">
+                                        <input type="password" id="password" name="password" required class="block w-full rounded-md border-gray-300 shadow-sm pr-10 focus:border-indigo-500 focus:ring-indigo-500">
+                                        <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                                            <i class="fas fa-eye text-gray-400 password-toggle"></i>
+                                        </span>
+                                    </div>
+                                    <div class="password-strength text-xs mt-1 text-gray-500">Password must be at least 8 characters long with 1 uppercase, 1 number</div>
+                                </div>
+                                <div>
+                                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                                    <div class="relative mt-1">
+                                        <input type="password" id="confirmPassword" name="confirm_password" required class="block w-full rounded-md border-gray-300 shadow-sm pr-10 focus:border-indigo-500 focus:ring-indigo-500">
+                                        <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                                            <i class="fas fa-eye text-gray-400 password-toggle"></i>
+                                        </span>
+                                    </div>
+                                    <div id="passwordMatch" class="error-message"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <!-- Document Upload Section -->
+                        <div class="py-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Document Upload</h2>
+                            <div id="documentFields">
+                                {% for doc in required_docs %}
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">{{ doc.name }}</label>
+                                    <input type="file" name="doc_{{ doc.id }}" id="doc_{{ doc.id }}" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                                    <p class="mt-1 text-sm text-gray-500">{{ doc.description }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <!-- Plan Selection Section -->
+                        <div class="py-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Select Plan</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {% for plan in plans %}
+                                <div class="plan-card border rounded-lg p-6 {% if forloop.first %}border-indigo-600 bg-indigo-50{% else %}border-gray-200{% endif %}">
+                                    <label class="flex items-start cursor-pointer">
+                                        <input type="radio" name="selected_plan" value="{{ plan.id }}" class="h-4 w-4 mt-1 text-indigo-600 border-gray-300 focus:ring-indigo-500" {% if forloop.first %}checked{% endif %}>
+                                        <div class="ml-3">
+                                            <h3 class="text-lg font-medium">{{ plan.name }}</h3>
+                                            <p class="text-2xl font-bold mt-2">₹{{ plan.price }}/mo</p>
+                                            <p class="mt-2 text-gray-500">{{ plan.description }}</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <!-- Terms and Conditions -->
+                        <div class="py-6">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5"><input id="terms" name="terms" type="checkbox" required class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"></div>
+                                <div class="ml-3"><label for="terms" class="block text-sm font-medium text-gray-700">I agree to the <a href="{% static 'documents/partner_terms_and_conditions.pdf' %}" class="text-indigo-600 hover:text-indigo-500">Terms of Service</a>
+                                </label></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="mt-8">
+                            <button type="button" id="submitBtn" disabled class="w-full flex justify-center py-4 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                                Proceed to Payment
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Login Link -->
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+                Already have an account?
+                <a href="{% url 'partner:login' %}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    Log in
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+    
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- SECTION 1: ELEMENT SELECTORS ---
+    const signupForm = document.getElementById('signupForm');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const passwordMatch = document.getElementById('passwordMatch');
+    const submitBtn = document.getElementById('submitBtn');
+    const sendEmailOtpBtn = document.getElementById('sendEmailOtpBtn');
+    const emailInput = document.getElementById('email');
+    const emailOtpField = document.getElementById('emailOtpField');
+    const emailOtpInput = document.getElementById('emailOtp');
+
+    // --- SECTION 2: STATE VARIABLES ---
+    let emailVerified = false;
+
+    // --- SECTION 3: UTILITY & API FUNCTIONS ---
+    function showMessage(type, message) {
+        const container = document.getElementById('general-messages');
+        container.innerHTML = `<div class="₹{type === 'error' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'} p-3 rounded-md mb-2">₹{message}</div>`;
+    }
+
+    async function checkExistence(email, phone) {
+        const response = await fetch('{% url "partner:check_existence" %}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
+            body: JSON.stringify({ email: email, phone: phone })
+        });
+        return await response.json();
+    }
+
+    async function sendOtp(contactType, contactValue) {
+        try {
+            const response = await fetch('{% url "partner:send_otp" %}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
+                body: JSON.stringify({ type: contactType, value: contactValue })
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Network or server error:', error);
+            return { success: false, message: 'A network error occurred.' };
+        }
+    }
+
+    async function verifyOtp(contactType, otp) {
+        try {
+            const response = await fetch('{% url "partner:verify_otp" %}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
+                body: JSON.stringify({ type: contactType, otp: otp })
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Network or server error:', error);
+            return { success: false, message: 'A network error occurred.' };
+        }
+    }
+
+    // --- SECTION 4: EVENT LISTENERS ---
+
+    // Password Visibility Toggle Logic
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const passwordField = this.parentElement.previousElementSibling;
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+
+    // Dynamic Plan Selection Highlight Logic
+    const planRadios = document.querySelectorAll('input[name="selected_plan"]');
+    planRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('border-indigo-600', 'bg-indigo-50');
+                card.classList.add('border-gray-200');
+            });
+            if (this.checked) {
+                const selectedCard = this.closest('.plan-card');
+                selectedCard.classList.add('border-indigo-600', 'bg-indigo-50');
+                selectedCard.classList.remove('border-gray-200');
+            }
+        });
+    });
+
+    // Email OTP Button Logic
+    sendEmailOtpBtn.addEventListener('click', async function() {
+        const email = emailInput.value;
+        if (!email) { showMessage('error', 'Please enter an email address.'); return; }
+
+        const existenceCheck = await checkExistence(email, null);
+        if (existenceCheck.exists) {
+            alert(existenceCheck.message);
+            return;
+        }
+        
+        const statusDiv = document.getElementById('emailOtpStatus');
+        statusDiv.textContent = 'Sending...';
+        const result = await sendOtp('email', email);
+        if (result.success) {
+            emailOtpField.classList.add('show');
+            statusDiv.textContent = 'OTP sent to your email. Check your inbox.';
+            statusDiv.className = 'text-sm mt-1 text-gray-600';
+        } else {
+            statusDiv.textContent = result.message;
+            statusDiv.className = 'text-sm mt-1 text-red-600';
+        }
+    });
+
+    // OTP Input Verification Logic
+    emailOtpInput.addEventListener('input', async function() {
+        const otp = this.value;
+        const statusDiv = document.getElementById('emailOtpStatus');
+        if (otp.length === 6) {
+            const result = await verifyOtp('email', otp);
+            if (result.success) {
+                emailVerified = true;
+                statusDiv.textContent = '✓ Email verified';
+                statusDiv.className = 'text-sm mt-1 text-green-600';
+            } else {
+                emailVerified = false;
+                statusDiv.textContent = 'Invalid OTP. Try again.';
+                statusDiv.className = 'text-sm mt-1 text-red-600';
+            }
+            checkFormValidity();
+        }
+    });
+
+    // --- SECTION 5: FORM VALIDATION LOGIC ---
+    function validatePasswordMatch() {
+        if (password.value && confirmPassword.value) {
+            if (password.value !== confirmPassword.value) {
+                passwordMatch.textContent = 'Passwords do not match';
+                passwordMatch.style.display = 'block';
+                return false;
+            } else {
+                passwordMatch.textContent = '';
+                passwordMatch.style.display = 'none';
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function checkFormValidity() {
+        const form = document.getElementById('signupForm');
+        const termsChecked = document.getElementById('terms').checked;
+        const passwordValid = validatePasswordMatch();
+        let allFieldsFilled = true;
+        const requiredInputs = form.querySelectorAll('[required]');
+        requiredInputs.forEach(input => {
+            if (!input.value) { allFieldsFilled = false; }
+        });
+        submitBtn.disabled = !(allFieldsFilled && emailVerified && passwordValid && termsChecked);
+    }
+
+    const formInputs = document.querySelectorAll('input, select, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('input', checkFormValidity);
+        input.addEventListener('change', checkFormValidity);
+    });
+
+    document.getElementById('terms').addEventListener('change', checkFormValidity);
+    checkFormValidity();
+
+// --- SECTION 6: FINAL FORM SUBMISSION ---
+submitBtn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    showMessage('info', 'Processing your request...');
+
+    const formData = new FormData(signupForm); // FormData automatically includes files
+
+    // Append selected plan separately if needed
+    const selectedPlan = document.querySelector('input[name="selected_plan"]:checked');
+    if (selectedPlan) {
+        formData.append('selected_plan_id', selectedPlan.value);
+    }
+
+    try {
+        const response = await fetch('{% url "partner:signup_submit" %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData // send FormData directly, do NOT stringify
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showMessage('success', result.message);
+            window.location.href = result.redirect_url;
+        } else {
+            showMessage('error', result.message);
+            submitBtn.disabled = false;
+        }
+    } catch (error) {
+        console.error('Network or server error:', error);
+        showMessage('error', 'A network error occurred.');
+        submitBtn.disabled = false;
+    }
+});
+
+});
+
+</script>
+{% endblock %}

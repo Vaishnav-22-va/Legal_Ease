@@ -1,0 +1,37 @@
+{% extends "base_admin.html" %}
+{% block title %}Service Categories{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Service Categories</h1>
+
+<table class="min-w-full border border-gray-300 rounded">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="border px-4 py-2">Name</th>
+            <th class="border px-4 py-2">Icon Class</th>
+            <th class="border px-4 py-2">Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat in categories %}
+            <tr>
+                <td class="border px-4 py-2">{{ cat.name }}</td>
+                <td class="border px-4 py-2">
+                    {% if cat.icon_class %}
+                        <i class="{{ cat.icon_class }}"></i> {{ cat.icon_class }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td class="border px-4 py-2">{{ cat.order }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3" class="border px-4 py-2 text-center text-gray-500">
+                    No categories found.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

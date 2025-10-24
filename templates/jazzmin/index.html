@@ -1,0 +1,52 @@
+{% extends "jazzmin/base.html" %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="card mt-4">
+        <div class="card-header">
+            <h3 class="card-title">Service Orders Per Day</h3>
+        </div>
+        <div class="card-body">
+            <div style="width: 100%; margin: auto;">
+                <canvas id="serviceOrderChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- The script must be inside the content block -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // This URL is correct because we tested it directly
+        fetch("{% url 'services:service_order_chart_json' %}")
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('serviceOrderChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'New Service Orders',
+                            data: data.data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    });
+    </script>
+{% endblock %}

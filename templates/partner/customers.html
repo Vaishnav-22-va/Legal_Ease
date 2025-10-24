@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-top: 5rem; padding-bottom: 5rem;">
+
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Customers</h2>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#addCustomerForm" aria-expanded="false" aria-controls="addCustomerForm">
+            <i class="bi bi-plus-circle"></i> Add New Customer
+        </button>
+    </div>
+
+    <!-- Add Customer Form (Collapsible) -->
+    <div class="collapse mb-4" id="addCustomerForm">
+        <div class="card card-body shadow-sm">
+            <h5 class="card-title">New Customer Details</h5>
+            <form method="POST" action="{% url 'partner:customers' %}">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" name="full_name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-success">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Customer List -->
+    <div class="card shadow-sm">
+        <div class="card-header">
+            Existing Customers
+        </div>
+        <div class="card-body">
+            {% if customers %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Added On</th>
+                            <th scope="col">Actions</th> </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><strong>{{ customer.partner_customer_id }}
+                            </strong></td>
+                            <td>{{ customer.full_name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.created_at|date:"d M, Y" }}</td>
+                            <td>
+                                <a href="{% url 'partner:edit_customer' customer.id %}" class="btn btn-sm btn-outline-secondary">
+                                    Edit
+                                </a>
+                                
+                                <form action="{% url 'partner:delete_customer' customer.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" 
+                        class="btn btn-sm btn-outline-danger" 
+                        onclick="return confirm('Are you sure you want to delete this customer? This action cannot be undone.');">
+                    Delete
+                </button>
+            </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-center text-muted">You haven't added any customers yet. Click the "Add New Customer" button to get started.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

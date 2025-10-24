@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card my-4 shadow-sm">
+    <div class="card-header bg-success text-white">
+        Payment Successful!
+    </div>
+    <div class="card-body">
+        <p>Thank you for your order.</p>
+
+        <h5>Order Details:</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Order ID:</strong> {{ order.pk }}</li>
+            <li class="list-group-item"><strong>Service:</strong> {{ order.service.title }}</li>
+            <li class="list-group-item"><strong>Status:</strong> {{ order.status|capfirst }}</li>
+            <li class="list-group-item"><strong>Amount Paid:</strong> ₹{{ order.service.get_price_for_user }}</li>
+            <li class="list-group-item"><strong>Ordered on:</strong> {{ order.created_at|date:"F j, Y, g:i a" }}</li>
+        </ul>
+
+        {% if order.invoice %}
+            <a href="{{ order.invoice.url }}" class="btn btn-primary mt-3" target="_blank">
+                <i class="fas fa-file-pdf me-2"></i> Download Invoice
+            </a>
+        {% endif %}
+        
+        <a href="{% url 'services:list' %}" class="btn btn-secondary mt-3 ms-2">Back to Services</a>
+    </div>
+</div>
+{% endblock %}

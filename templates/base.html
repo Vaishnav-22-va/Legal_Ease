@@ -1,0 +1,1848 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Best Online Platform for ITR e-filing and Legal Services{% endblock %}</title>
+    
+    <link rel="icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3crect width='100' height='100' rx='12' fill='%23002e63'/%3e%3ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Poppins, sans-serif' font-weight='600' font-size='60' fill='white'%3eLM%3c/text%3e%3c/svg%3e">
+
+    <meta name="description" content="Best itr filing website provides expert legal services for tax filing, GST registration, company, MSME, food license registration and more.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+      <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFC3ZCSK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+   
+
+{% block meta_tags %}
+        <meta name="description" content="Your default site description.">
+    {% endblock %}
+
+    <style>
+/* Legal Munshi - Final Responsive Navbar CSS
+   This file provides a complete, mobile-first styling solution.
+*/
+
+:root {
+  --munshi-coolblack: #002e63;
+  --munshi-orange: #b57222;
+}
+
+/* --- 1. General Styles --- */
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.main-content-area {
+    width: 90%;          /* Always use a percentage of the available space */
+    max-width: 1200px; /* A safety limit for very wide screens */
+    margin: 0 auto;        /* Center the container */
+}
+.scalable-button {
+    font-size: 1rem;       /* Scales with zoom */
+    padding: 0.75rem 1.5rem; /* Scales with zoom */
+    border-radius: 0.5rem; /* Scales with zoom */
+}
+
+.miniheader {
+  background-color: var(--munshi-coolblack);
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.miniheader a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.miniheader a:hover {
+    color: var(--munshi-orange);
+}
+
+/* --- 2. Main Navbar Container --- */
+
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand img {
+  height: 60px;
+  width: auto;
+}
+
+/* --- 3. Mobile Navigation (Default Behavior) --- */
+
+/* Hamburger Button */
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.5rem;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Mobile Menu Container */
+.navbar-collapse {
+  padding-top: 1rem;
+}
+
+.navbar-nav .nav-item {
+  /* Allow text to wrap by default on mobile */
+  white-space: normal; 
+}
+
+.navbar-nav .nav-link {
+  color: #111 !important;
+  font-weight: 500;
+  padding: 10px 15px !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.navbar-nav .nav-item:last-child .nav-link {
+    border-bottom: none;
+}
+.navbar-nav .nav-link.login-btn {
+    color: white !important;
+}
+
+.login-btn {
+  background-color: var(--munshi-orange) !important;
+  color: white !important;
+  border-radius: 25px;
+  text-align: center;
+  margin-top: 10px; /* Spacing for mobile view */
+  padding: 10px 15px !important;
+}
+
+/* Mobile Dropdown Menu */
+.dropdown-menu {
+  background: #f8f9fa;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  min-width: 100%;
+}
+
+.dropdown-item {
+  padding: 10px 30px;
+  color: var(--munshi-coolblack) !important;
+  font-size: 14px;
+  white-space: normal; /* Ensure dropdown items can wrap */
+}
+
+
+/* --- 4. Desktop Navigation (for screens 992px and wider) --- */
+
+@media (min-width: 992px) {
+  
+  .navbar-collapse {
+    padding-top: 0;
+  }
+  
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item {
+    /* Prevent wrapping on desktop where there is more space */
+    white-space: nowrap; 
+  }
+
+  .navbar-nav .nav-link {
+    padding: 8px 22px !important;
+    border-bottom: none;
+  }
+  
+  .login-btn {
+    margin-top: 0;
+  }
+
+  /* Desktop Dropdown Styling */
+  .dropdown-menu {
+    background: white;
+    box-shadow: 5px 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 700px;
+  }
+  
+  .dropdown:hover > .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+    margin-top: 0;
+  }
+
+  /* Desktop Multi-column Dropdown */
+  .multi-column-dropdown {
+    column-count: 2;
+    column-gap: 1rem;
+  }
+
+  .multi-column-dropdown .dropdown-item {
+    padding: 0.25rem 1rem;
+    break-inside: avoid;
+  }
+}
+
+        .footer-section {
+            background-color: var(--munshi-coolblack);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-heading {
+            color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--munshi-orange);
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--munshi-orange);
+            padding-left: 5px;
+        }
+
+    .footer-social a {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none; /* ✅ Add this line to remove the underline */
+}
+
+.footer-social a:hover {
+    background-color: var(--munshi-orange);
+    transform: translateY(-3px);
+
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding-top: 1rem;
+            }
+            
+            .dropdown-menu {
+                min-width: auto;
+            }
+        }
+
+        .btn-register {
+  background-color: var(--munshi-orange) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-register:hover {
+  background-color: var(--munshi-coolblack) !important;
+}
+.btn-expert {
+  background-color: var(--munshi-coolblack) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-expert:hover {
+  background-color: var(--munshi-orange) !important;
+}
+.btn-extra-benefits {
+  background-color: var(--munshi-coolblack) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-extra-benefits:hover {
+  background-color: var(--munshi-orange) !important;
+}
+.btn-join {
+  background-color: var(--munshi-orange) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-expert:join {
+  background-color: var(--munshi-coolblack) !important;
+}
+.btn-start {
+  background-color: var(--munshi-orange) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-start:join {
+  background-color: var(--munshi-coolblack) !important;
+}
+.btn-green {
+  background-color: var(--munshi-orange) !important;
+  color: white !important;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-green:join {
+  background-color: var(--munshi-coolblack) !important;
+}
+ 
+
+
+        
+    </style>
+   
+    {% block extra_css %}{% endblock %}
+
+     {% block extra_head %}
+    {% endblock %}
+
+</head>
+<body>
+    <header class="headernav">
+        <div class="miniheader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-lg-end p-0">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item px-2">
+                                <i class="fas fa-envelope text-white"></i>
+                                <a href="mailto:vaishnavsen59@gma il.com" class="text-white">support@legalease.in</a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <i class="fas fa-phone-alt text-white"></i>
+                                <a href="tel:+918085462385" class="text-white">+91 999999999</a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="{% url 'media_recognition' %}" class="text-white">
+                                    <i class="fas fa-newspaper me-1"></i> Media Recognition
+                                </a>
+                            </li>
+
+                            {# ✅ Hide Partner Portal if logged in as partner #}
+                             {% if not user.is_authenticated or not user.partner %}
+<li class="list-inline-item px-2"></li>
+    <a href="{% url 'partner:login' %}" class="text-white">
+        <i class="fas fa-user-tie me-1"></i> Partner Portal
+    </a>
+</li>
+{% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                {# ✅ Logo goes to dashboard if partner, else home #}
+                <a class="navbar-brand" href="{% if user.is_authenticated and user.partner %}{% url 'partner:dashboard' %}{% else %}{% url 'home' %}{% endif %}">
+                    <img src="{% static 'common/images/logo1.png' %}" alt="Legal Munshi">
+                </a>
+
+             
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        {# ✅ Home also adapts #}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% if user.is_authenticated and user.partner %}{% url 'partner:dashboard' %}{% else %}{% url 'home' %}{% endif %}">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        
+                            
+                               
+
+                        {# ✅ New Services button (always visible) #}
+                        {% if request.user.is_authenticated and request.user.partner %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'partner:select_customer_for_order' %}">
+            <i class="fas fa-cogs"></i> Services
+        </a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'services:list' %}">
+            <i class="fas fa-cogs"></i> Services
+        </a>
+    </li>
+{% endif %}
+
+<!-- Multi-column services dropdownnn -->
+{% for cat in navbar_categories %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ forloop.counter }}" 
+       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if cat.icon_class %}<i class="{{ cat.icon_class }}"></i>{% endif %} {{ cat.name }}
+    </a>
+
+    <div class="dropdown-menu p-4" aria-labelledby="navbarDropdown{{ forloop.counter }}" style="min-width: 750px;">
+        <div class="row">
+            
+            <div class="col-md-4">
+            
+            {% for service in cat.services.all %} <a class="dropdown-item d-flex align-items-center mb-2" href="{% url 'services:info' service.slug %}">
+                    <div class="icon me-2" style="font-size: 1.2rem;">
+                        {% if service.icon_class %}
+                            <i class="{{ service.icon_class }}"></i>
+                        {% elif service.icon %}
+                            <img src="{{ service.icon.url }}" alt="{{ service.title }} icon" style="height:40px;">
+                        {% else %}
+                            <i class="fas fa-cogs"></i>
+                        {% endif %}
+                    </div>
+                    <span>{{ service.title }}</span>
+                </a>
+
+                {% if forloop.counter|divisibleby:7 and not forloop.last %}
+                    </div><div class="col-md-4"> {% endif %}
+
+            {% endfor %}
+            
+            </div>
+
+        </div>
+    </div>
+</li>
+{% endfor %}
+
+
+
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about_us' %}"><i class="fas fa-info-circle"></i> Why Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact_us' %}"><i class="fas fa-phone-alt"></i> Contact</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle login-btn px-3" href="#" id="userDropdown" 
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle me-1"></i>
+                                {% if user.first_name %}{{ user.first_name }}{% elif user.username %}{{ user.username }}{% else %}My Account{% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">
+                                        <i class="fas fa-edit me-2"></i>Edit Profile
+                                    </a>
+                                </li>
+
+                                {# ✅ If partner, show partner orders, else normal orders #}
+                                {% if user.user_type == "partner" %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'accounts:orders' %}">
+                                        <i class="fas fa-briefcase me-2"></i> My Orders
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'accounts:orders' %}">
+                                        <i class="fas fa-shopping-bag me-2"></i> My Orders
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link login-btn px-3" href="{% url 'accounts:login' %}">
+                                <i class="fas fa-sign-in-alt me-1"></i> Log In
+                            </a>
+                        </li>
+                        
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+    
+                        
+        <section class="section sec-srvstep mt-4">
+    <div class="container text-center mb-3">
+        <h2 class="fs-4 fw-bolder mb-0 text-black">Why <span class="text-black">Choose Us</span></h2>
+        <p class="text-black">We endeavour to help you manage your compliance requirements effectively.</p>
+    </div>
+</section>
+
+<section class="why-choose-us-section py-5">
+    <div class="container">
+        <div class="row g-4 justify-content-center align-items-center">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="why-box text-center h-100">
+                    <img src="{% static 'front/images/icons/return-filed2.webp' %}" alt="Online Legal Service" class="mb-2" height="70" width="70">
+                    <div class="stat-title fs-3 fw-bold text-black mt-2">4.5 lakh+</div>
+                    <div class="stat-desc fw-bold text-black" style="font-size:1.08rem;">
+                        4.5 lakh tax returns filed
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="why-box text-center h-100">
+                    <img src="{% static 'front/images/icons/strategic-partnership2.webp' %}" alt="Strategic partnership" class="mb-2" height="70" width="70">
+                    <div class="stat-title fs-3 fw-bold text-black mt-2">24520+</div>
+                    <div class="stat-desc fw-bold text-black" style="font-size:1.08rem;">
+                        Strategic PARTNERSHIPS
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="why-box text-center h-100">
+                    <img src="{% static 'front/images/icons/onboard-experts2.webp' %}" alt="70 onboard experts" class="mb-2" height="70" width="70">
+                    <div class="stat-title fs-3 fw-bold text-black mt-2">70+</div>
+                    <div class="stat-desc fw-bold text-black" style="font-size:1.08rem;">
+                        Onboard EXPERTS
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="why-box text-center h-100">
+                    <img src="{% static 'front/images/icons/corporate01.webp' %}" alt="250 working cities" class="mb-2" height="70" width="70">
+                    <div class="stat-title fs-3 fw-bold text-black mt-2">250+</div>
+                    <div class="stat-desc fw-bold text-black" style="font-size:1.08rem;">
+                        Working CITIES
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.why-choose-us-section {
+    background: #f7fafd;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+@media (max-width: 991.98px) {
+    .why-choose-us-section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+.stat-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #181f38;
+}
+.stat-desc {
+    font-weight: 800;
+    color: #23232a;
+}
+.why-box img {
+    display: inline-block;
+}
+</style>
+
+
+        
+        <section class="section sec-srvstep mt-5">
+    <div class="container text-center mb-4">
+        <h2 class="fs-4 fw-bolder mb-3 text-black" style="font-weight:900;">
+            4 Simple Steps to Register Your Business in FY 2024-25
+        </h2>
+        <div style="width: 100px; height: 4px; background: linear-gradient(90deg,#21272c 60%, #1cc47b 100%); margin: 0 auto 2.5rem;"></div>
+    </div>
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="step-box bg-white p-4 shadow-sm h-100 text-center" style="border-radius: 18px;">
+                    <div class="icon mb-3">
+                        <i class="fas fa-file-invoice" style="font-size: 50px; color: #002e63;"></i>
+                    </div>
+                    <p class="fw-bolder mb-1 text-black">Fill Up Registration Form</p>
+                    <p class="mb-0 fs-6 text-secondary">
+                        Filling out a business registration form is the first step toward starting your company.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="step-box bg-white p-4 shadow-sm h-100 text-center" style="border-radius: 18px;">
+                    <div class="icon mb-3">
+                        <i class="fas fa-check-circle" style="font-size: 50px; color: #002e63;"></i>
+                    </div>
+                    <p class="fw-bolder mb-1 text-black">Pay Registration fee Online</p>
+                    <p class="mb-0 fs-6 text-secondary">
+                        Online payment is a fast and secure way to complete your business registration process.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="step-box bg-white p-4 shadow-sm h-100 text-center" style="border-radius: 18px;">
+                    <div class="icon mb-3">
+                        <i class="fas fa-user-tie" style="font-size: 50px; color: #002e63;"></i>
+                    </div>
+                    <p class="fw-bolder mb-1 text-002e63">Expert Will Process Your Application</p>
+                    <p class="mb-0 fs-6 text-secondary">
+                        Our expert team will verify your details and handle the business registration process.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="step-box bg-white p-4 shadow-sm h-100 text-center" style="border-radius: 18px;">
+                    <div class="icon mb-3">
+                        <i class="fas fa-award" style="font-size: 50px; color: #002e63;"></i>
+                    </div>
+                    <p class="fw-bolder mb-1 text-black">Get Certificate on Email</p>
+                    <p class="mb-0 fs-6 text-secondary">
+                        Once approved, you'll receive your business registration certificate by email.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.step-box {
+    transition: box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(31,49,63,.08);
+}
+
+.step-box:hover {
+    box-shadow: 0 8px 28px rgba(31,49,63,.14);
+}
+
+@media (max-width: 991.98px) {
+    .step-box {
+        margin-bottom: 28px;
+    }
+}
+</style>
+
+   {% if not request.user.is_authenticated or not is_partner %}
+    
+<section class="partner-section full-width-section py-5 position-relative">
+    <div class="row align-items-center mx-0 shifted-content">
+        <div class="col-12 col-md-6 px-5">
+            <span class="text-dark fw-semibold fs-5">Legal Ease</span>
+            <h2 class="fs-1 text-black fw-bold mb-4">
+                Become A Partner
+            </h2>
+            <ul class="list-unstyled partner-benefits mb-4">
+                <li><i class="bx bx-check-circle text-navy me-2"></i>Earn from all our services together with registrations</li>
+                <li><i class="bx bx-check-circle text-navy me-2"></i>Accelerated growth through a targeted network of businesses</li>
+                <li><i class="bx bx-check-circle text-navy me-2"></i>Earn up to Rs. 20 lakh per year</li>
+                <li><i class="bx bx-check-circle text-navy me-2"></i>Training and education on all services</li>
+            </ul>
+            <a href="{% url 'partner:signup' %}" class="btn-join me-3">Join us as Partner</a>
+        </div>
+        <div class="col-12 col-md-6 text-center px-0">
+            <img src="{% static 'front/images/partner-bg.png' %}" alt="Become a partner" class="partner-image" />
+        </div>
+    </div>
+</section>
+
+<style>
+.full-width-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: hsl(0, 0%, 100%);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    box-sizing: border-box;
+}
+
+/* Slight left shift */
+.shifted-content {
+    margin-left: -3%;
+}
+
+/* Blue horizontal lines */
+.blue-line {
+    height: 4px;
+    background: linear-gradient(90deg, #1c3aa9 50%, #22b66a 100%);
+    border: none;
+    margin: 0;
+    border-radius: 3px;
+}
+.top-line {
+    margin-bottom: 2rem;
+}
+.bottom-line {
+    margin-top: 2rem;
+}
+
+.partner-benefits li {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #222;
+}
+.me-2 {
+    margin-right: 0.5rem !important;
+}
+.me-3 {
+    margin-right: 1rem !important;
+}
+.btn-join {
+    background-color: #b57222 !important;
+    color: white !important;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none !important;
+    box-shadow: none !important;
+    text-decoration: none;
+    display: inline-block;
+}
+.partner-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+}
+@media (max-width: 767.98px) {
+    .full-width-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .partner-benefits li {
+        font-size: 0.95rem;
+    }
+    .btn-join, .btn-primary {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .shifted-content {
+        margin-left: 0;
+    }
+}
+</style>
+{% endif %}
+
+    <section class="section sec-inprocess pt-5 position-relative" style="background:#fff;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 mb-3">
+                <div class="dt-sc-aedit-title alignleft mb-4">
+                    <h3 class="fw-bold" style="color:#182149;">We are Specialists</h3>
+                    <h2 class="fs-2 mb-2 text-black fw-bolder" style="font-weight:900;">
+                        How to Get Your Service Completed, Step-by-Step
+                    </h2>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                <ul class="itr-steps-list list-unstyled mb-0">
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/choice.png' %}" alt="KYC information" height="35" width="38">
+                        </span>
+                        <div class="step-title fw-bold">Choose Your Service</div>
+                        <p>Browse our categories and select the specific service that meets your needs.</p>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/step2.png' %}" alt="Documents required for ITR filing" height="38" width="33">
+                        </span>
+                        <div class="step-title fw-bold">Required Documents for ITR Filling</div>
+                        <p>Complete our simple online form with all the necessary information for your order.</p>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/step3.png' %}" alt="Service request number" height="41" width="37">
+                        </span>
+                        <div class="step-title fw-bold">Upload Required Documents</div>
+                        <p>Securely upload any required documents directly through our portal.</p>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/step4.png' %}" alt="Connect with us" height="41" width="49">
+                        </span>
+                        <div class="step-title fw-bold">Complete Payment</div>
+                        <p>Finalize your order by making a secure payment through our payment gateway.</p>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/step5.png' %}" alt="File ITR V" height="34" width="34">
+                        </span>
+                        <div class="step-title fw-bold">We Process Your Order</div>
+                        <p>Our experts will begin working on your service, ensuring everything is handled correctly.</p>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <img src="{% static 'front/images/icons/step6.png' %}" alt="E-verify return" height="37" width="37">
+                        </span>
+                        <div class="step-title fw-bold">Receive Your Documents</div>
+                        <p>Once completed, we will deliver the final documents to you through your portal.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-6 text-center my-auto">
+                <span class="img_itr_views">
+                    <img src="{% static 'front/images/icons/process.jpg' %}" alt="File ITR online" class="img-fluid itr-demo-img" style="max-width:100%;height:auto;width:auto;">
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.itr-steps-list {
+    padding-left: 0;
+}
+.itr-steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--munshi-coolblack);
+    padding-left: 1rem;
+    background: #f9faff;
+    border-radius: 0.66rem;
+    box-shadow: 0 2px 8px rgba(5,119,70,0.06);
+    min-height: 70px;
+}
+.itr-steps-list .icon {
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+.itr-steps-list .step-title {
+    font-size: 1.1rem;
+    color: #21272c;
+    margin-bottom: 0.25rem;
+}
+.itr-steps-list p {
+    color: #21272c;
+    margin-bottom: 0;
+    font-size: 0.97rem;
+    line-height: 1.35rem;
+}
+
+@media (max-width: 991.98px) {
+    .sec-inprocess .row > div {
+        margin-bottom: 1.5rem !important;
+    }
+    .itr-steps-list li {
+        padding-left: 0.7rem;
+        font-size: 0.97rem;
+        gap: 0.9rem;
+    }
+    .img_itr_views img {
+        max-width: 98vw;
+        height: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sec-inprocess .dt-sc-aedit-title {
+        text-align: center;
+    }
+    .itr-steps-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: unset;
+        font-size: 0.97rem;
+    }
+    .itr-steps-list .icon {
+        margin-bottom: 0.2rem;
+    }
+    .img_itr_views img {
+        max-width: 100vw;
+        height: auto;
+    }
+}
+</style>
+<section class="section sec-satisfy pt-3 pb-3 mt-5 bg_change" style="background-color: #f9fbfc;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-lg-3 text-center mb-3 mb-lg-0">
+                <img src="{% static 'front/images/icons/satisfaction-guaranteed.webp' %}" alt="100% satisfaction guaranteed" class="custom-image" style="max-width: 100%; height: auto; max-height: 292px;">
+            </div>
+            <div class="col-md-6 col-lg-9">
+                <h2 class="fs-3 fw-bolder mb-3 mt-2 text-black">100% Satisfaction Guaranteed</h2>
+                <p class="text-black fw-semilg mb-4" style="max-width: 600px;">
+                    We promise to deliver exceptional service. If you are not satisfied with our service, we will provide an unconditional refund of the service fee you paid.
+                </p>
+                <a href="{% url 'services:list' %}" class="btn-start" style="white-space: nowrap; padding: 10px 20px; font-weight: 600; border-radius: 6px; background: #b57222; color: #fff; text-decoration: none; display: inline-block; transition: background-color 0.3s ease;">
+                    Get Started <i class="bx bx-right-arrow-alt"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.bg_change {
+    background-color: #f9fbfc; /* subtle light shade */
+}
+
+.btn-start:hover {
+    background-color: #002e63 !important;
+    color: white !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .sec-satisfy .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .sec-satisfy .col-md-6.col-lg-9 {
+        max-width: 100% !important;
+        margin-top: 1.5rem;
+    }
+    .btn-start {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+</style>
+
+    <section class="section sec-wzaccount pt-0 pt-md-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Vector Image, left column -->
+            <div class="col-12 col-md-5 mb-4 mb-md-0">
+                <div class="text-center text-md-start">
+                    <img src="{% static 'front/images/icons/income-tax-return-vector.webp' %}" alt="Best tax filing website" class="img-fluid" style="max-width:380px;">
+                </div>
+            </div>
+            <!-- Main Feature, right column -->
+            <div class="col-12 col-md-7">
+                <div class="mb-2">
+                    <h2 class="fw-bold mb-2" style="font-size:1.5rem;letter-spacing:-.5px;">Legal Ease
+                    </h2>
+                    <div style="height:5px;width:130px;background:linear-gradient(90deg,#182149 50%,#22b66a 100%);border-radius:4px;margin-bottom:.8rem;"></div>
+                </div>
+                <h3 class="fs-2 fw-bold mb-1 text-black">India's Best Growing Tax Filing Website.</h3>
+                <p class="text-black fs-6 mb-3">File Income Tax Returns and GST Returns Online With the Fastest, Safest and Easiest Portal Legal Munshi in India.</p>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/authorized.svg' %}" alt="Authorized by income tax department" class="me-2" height="24" width="24">
+                                <span>Authorized by Income Tax Department "e-Return Intermediary (ERI)"</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/supported.svg' %}" alt="Initiative for startups" class="me-2" height="24" width="24">
+                                <span>Supported by iStart (Government of Rajasthan. Initiative for startups).</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/team-ca.svg' %}" alt="Team of CA" class="me-2" height="24" width="24">
+                                <span>Team of Chartered Accountants</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/registered.svg' %}" alt="Registered with startup india scheme" class="me-2" height="24" width="24">
+                                <span>Registered with Startup India is Duly Certified Under Government of India Startup India Scheme.</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/safe-and-secure.svg' %}" alt="Secure and safe" class="me-2" height="24" width="24">
+                                <span>Secure and Safe</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <img src="{% static 'front/images/icons/onestopsolution.svg' %}" alt="Tax solution" class="me-2" height="24" width="24">
+                                <span>One Stop Solution for all Your Tax Needs</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section sec-associate py-3 py-md-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4 text-center">
+                <h2 class="fs-4 fw-bolder mb-2" style="font-weight:800;">Our Alliances</h2>
+                <div style="width:130px;height:5px;background:linear-gradient(90deg,#182149 50%,#22b66a 100%);border-radius:4px;margin:0 auto 23px auto;"></div>
+                <div class="subhead fw-semilg mb-4">Together with our strategic alliance partners our teams are able to deliver Broad-ranging services and solutions via expanded product<br class="d-none d-md-block">offerings and increased with our team and core value</div>
+                <ul class="our_alliances d-flex flex-wrap align-items-center justify-content-center gap-4 m-0" style="list-style:none; padding:0;">
+                    <li><img src="{% static 'front/images/emitra-logo.png' %}" alt="E-mitra" class="img-fluid" style="height:62px;width:auto;"></li>
+                    <li><img src="{% static 'front/images/mobisafar-logo.png' %}" alt="Mobisafar" class="img-fluid" style="height:62px;width:auto;"></li>
+                    <li><img src="{% static 'front/images/aisect-logo.png' %}" alt="AISECT" class="img-fluid" style="height:62px;width:auto;"></li>
+                    <li><img src="{% static 'front/images/the-dogma-soft-logo.png' %}" alt="The Dogma Soft" class="img-fluid" style="height:62px;width:auto;"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Responsive bullet and text alignment tweaks */
+@media (max-width: 991.98px) {
+    .sec-wzaccount h2, .sec-wzaccount h3 { text-align:center; }
+}
+
+@media (max-width: 767.98px) {
+    .sec-wzaccount .row { flex-direction: column-reverse; }
+    .sec-wzaccount img.img-fluid { margin-bottom: 24px; }
+    .sec-associate ul.our_alliances { gap: 15px !important; }
+}
+</style>
+
+
+               <section class="pt-5 pb-4" style="background:#fff;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="bg-white rounded-3 shadow p-4 px-md-5">
+          <div class="row align-items-center">
+            <!-- Left: CTA -->
+            <div class="col-12 col-md-6 mb-4 mb-md-0 text-center text-md-start">
+              <h2 class="fs-4 fw-bold text-black mb-2">Ready to get started?</h2>
+              <p class="fs-6 text-black mb-3">
+                Click on Get Started button and select just your want by Legal Ease
+              </p>
+              <a href="{% url 'partner:signup' %}" class="btn-green me-2 mb-2 mb-md-0" style="min-width:150px;">
+                Get Started <i class="bx bx-right-arrow-alt"></i>
+              </a>
+              <a rel="nofollow" href="https://youtube.com" target="_blank" class="btn btn-light border ms-md-2 fw-bold">
+                <img src="{% static 'common/images/logo1.png' %}" alt="Tax help video" height="18" width="28" style="vertical-align:middle; margin-right:5px">
+                Watch Video
+              </a>
+            </div>
+            <!-- Right: Video thumbnail with play overlay -->
+            <div class="col-12 col-md-6 text-center">
+              <a href="https://youtube.com" target="_blank" style="display:inline-block;position:relative;">
+                <img src="{% static 'common/images/logo1.png' %}" alt="Watch Video Thumbnail" style="width:100%; max-width:340px; border-radius: 12px;">
+                <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                font-size:56px;color:white;background:rgba(0,0,0,0.40);padding:4px 25px;border-radius:50%;">
+                  ▶
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section sec-expertserv py-4 bg_change" style="background:#f7fafd;">
+  <div class="container">
+    <div class="text-center text-black mb-4 pb-2 position-relative">
+      <h2 class="fs-4 fw-bolder mb-2" style="font-weight:800;">
+        Looking for income tax filing services?
+      </h2>
+      <div style="width:140px;height:5px;background:linear-gradient(90deg,#182149 50%,#22b66a 100%);border-radius:4px;margin:0 auto 18px auto;"></div>
+      <div class="subhead fs-6 fw-normal mb-3">
+        In addition to providing software services, we also offer expert services to help you manage your business
+        <br class="d-none d-md-block">
+        and legal compliance with Legal Ease
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <!-- Left: Services List -->
+      <div class="col-12 col-lg-7 mb-4 mb-lg-0">
+        <ul class="points w-100 mt-0 ps-0">
+          <li class="d-flex align-items-start mb-4">
+            <span class="icon me-3 mt-1 flex-shrink-0">
+              <img src="{% static 'front/images/icons/itr-filing-assistance.svg' %}" alt="Help ITR filing" height="60" width="60">
+            </span>
+            <div>
+              <div class="mb-1 fs-5 fw-semibold">ITR Filling Assistance</div>
+              <p class="mb-0 fs-6">
+                Get Expert assistance in tax filling for salaried and self-employed individuals, NRIs, Capital gains, and more services, with Legal Ease.
+              </p>
+            </div>
+          </li>
+          <li class="d-flex align-items-start mb-4">
+            <span class="icon me-3 mt-1 flex-shrink-0">
+              <img src="{% static 'front/images/icons/business-management.svg' %}" alt="Business management" height="60" width="60">
+            </span>
+            <div>
+              <div class="mb-1 fs-5 fw-semibold">Business Management</div>
+              <p class="mb-0 fs-6">
+                Business management is the coordination and organization of business activities. Business managers oversee operations and help employees reach their top productivity levels.
+              </p>
+            </div>
+          </li>
+          <li class="d-flex align-items-start">
+            <span class="icon me-3 mt-1 flex-shrink-0">
+              <img src="{% static 'front/images/icons/all-legal-services.svg' %}" alt="All legal services" height="60" width="60">
+            </span>
+            <div>
+              <div class="mb-1 fs-5 fw-semibold">All Legal Services</div>
+              <p class="mb-0 fs-6">
+                Preparation of planning memo of appeal, paper book including printing and translation of documents in legal proceedings, Drafting of legal documents special leave petition etc.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Right: Illustration -->
+      <div class="col-12 col-lg-5 text-center">
+        <img src="{% static 'front/images/icons/expert-services-img.webp' %}" alt="Form 16 tax filing" class="img-fluid" style="max-width:340px;border-radius:10px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.btn-green {
+  background-color: #b57222 !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none !important;
+}
+.btn-green:hover {
+  background: #182149 !important;
+  color: #fff !important;
+}
+.bg_change { background: #f7fafd !important; }
+.points { list-style: none; padding: 0; margin: 0; }
+.points .icon img { border-radius: 8px; }
+@media (max-width: 991.98px) {
+  .points li { flex-direction: column !important; text-align: left; }
+  .col-lg-5.text-center img { margin-top: 30px; }
+}
+@media (max-width: 767.98px) {
+  .bg-white.p-4, .bg-white.px-md-5 { padding: 1.3rem !important; }
+  h2, .fs-3, .fs-4 { font-size: 1.25rem !important; }
+  .subhead { font-size: 1rem !important; padding: 0 2px; }
+  .points .icon img { height:44px !important; width:auto !important; }
+}
+</style>
+
+    <section class="section sec-wzaccount pt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="text-center text-black mb-4 pb-2 position-relative">
+                    <h2 class="fs-4 fw-bolder mb-3 sepetate">FAQ's </h2>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="faq_details">
+                            <div class="accordion_wrapper">
+                                <div class="accordion" id="accordionfaq">
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <strong></strong>
+                                                What are the advantages of e-filing? </button> </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>E-filing is a fast, convenient, secure, and
+                                                    sometimes free way to file taxes. E-filing is
+                                                    processed quickly, even if you wait until the last
+                                                    submission date.</p>
+                                                <p>If you file electronically and direct deposit
+                                                    your refund, the funds will be transferred to your
+                                                    bank account within a few days of receiving and
+                                                    processing your return. If you have a balance, you
+                                                    can pay by direct debit. And with e-filing, you
+                                                    don't have to worry about making mistakes, as
+                                                    errors are corrected immediately.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><strong></strong>How
+                                                does Online Income Tax Return Filing work in India?</button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>Taxes imposed on the income of individuals,
+                                                    corporations, and other legal entities are
+                                                    formally called income taxes. There is no uniform
+                                                    tax rate for all income ranges, and it varies by
+                                                    industry and region, and in some cases, lower
+                                                    incomes are eligible to pay income tax.</p>
+                                                <p>There are two types of taxes: direct and
+                                                    indirect. A direct tax is a tax that is collected
+                                                    directly from the taxpayer, whereas an indirect
+                                                    tax is a third-party tax such as a value-added
+                                                    tax.</p>
+                                                <p>An Indian Income Tax Return (ITR) is a form for
+                                                    filing income and tax details with the Income Tax
+                                                    Authority. The tax eligibility of the taxpayer is
+                                                    calculated based on income. Sometimes, taxpayers
+                                                    are bound to get refunds from the Income Tax
+                                                    Department if their income tax returns show excess
+                                                    tax paid during the previous year.</p>
+                                                <p>All registered taxpayers with taxable income must
+                                                    file their Income Tax Returns online. However,
+                                                    people over 80 who do not have income from regular
+                                                    business or profession can also file paper
+                                                    returns.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                What is a GST return, and how many GST returns are
+                                                filed?</button> </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>GST Return is a document giving details of income
+                                                    that a registered GST dealer must submit to the
+                                                    Government of India's tax authorities. This return
+                                                    confirms the payment of the registered GST dealer
+                                                    and calculates the tax liability.</p>
+                                                <p>GST returns are filed monthly or quarterly, or
+                                                    annually by GST-registered dealers depending on
+                                                    the nature of the business and whether there is an
+                                                    option to file returns monthly or quarterly. 25
+                                                    GST returns should be filed in a year.</p>
+                                                <p>Taxpayers who have opted for Quarterly Return and
+                                                    Monthly Payment Plan (QRMP) must file eight
+                                                    quarterly returns and one annual return. Hence, 9
+                                                    GST returns are to be filed in a year.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">What
+                                                is the role of a Digital Signature Certificate? </button>
+                                        </h2>
+                                        <div id="collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>A certificate serves as proof of a person's
+                                                    identity for a specific purpose. For example, a
+                                                    driving license identifies someone legally driving
+                                                    in a particular country. Similarly, a digital
+                                                    certificate may be presented electronically to
+                                                    identify a person, access information and services
+                                                    online, or digitally sign certain documents.</p>
+                                                <p>A licensed Certificate Authority (CA) may issue a
+                                                    digitally signed certificate. Certificate
+                                                    Authority (CA) means a person licensed under
+                                                    section 24 of the Information Technology Act, 2000
+                                                    of India to issue Digitally Signed Certificates.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">How
+                                                do I register for MSME Udyam Online in India?</button>
+                                        </h2>
+                                        <div id="collapsefive" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>MSME stands for Micro, Small, and Medium
+                                                    Enterprises. There was no clear definition of MSME
+                                                    till the Atma Nirvana package was announced by the
+                                                    Finance Minister in May 2020. These companies were
+                                                    classified based on manufacturing and service
+                                                    industries. But after the Atmanirbhar package,
+                                                    this distinction between manufacturing and service
+                                                    industries has disappeared. The classification of
+                                                    these companies is currently based on investment
+                                                    and sales. Earlier, this process was known as
+                                                    Aadhar Udyog Registration.</p>
+                                                <p>MSMEs can register through MSME Govt Portal only.
+                                                    Users can register for a new MSME through this
+                                                    portal or re-register an already registered Udyami
+                                                    Aadhaar Memorandum Part II (EM-II) or Udyog
+                                                    Aadhaar Memorandum. The Ministry of Small and
+                                                    Medium Enterprises manages and operates this
+                                                    portal, so it is safe and reliable.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                                                What are the benefits of having a FOSCOS/FSSAI
+                                                License/Registration? </button> </h2>
+                                        <div id="collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>Consumers are becoming more aware of food
+                                                    quality, standards, and hygiene in this
+                                                    information age. It is more convenient for online
+                                                    grocery stores to be personally FSSAI certified
+                                                    before buying anything from outside, as it
+                                                    provides better assurance of food quality without
+                                                    contamination or foreign ingredients.</p>
+                                                <p><strong>Legal Benefits:</strong></p>
+                                                <p>Most people still believe that getting a food
+                                                    license is a slow and challenging process with
+                                                    lots of paperwork and paperwork. There is also a
+                                                    need for clarification that getting a food license
+                                                    costs much money.</p>
+                                                <p><strong>Use of FSSAI Logo:</strong></p>
+                                                <p>FSSAI licenses only those businesses that meet
+                                                    minimum hygiene standards. If you have a food
+                                                    sales license, you can display it on menu cards,
+                                                    pamphlets, packaging bags, etc. The FSSAI logo on
+                                                    the food will show the products in the
+                                                    competition.</p>
+                                                <p><strong>Business expansion:</strong></p>
+                                                <p>All newly established companies want to expand
+                                                    their operations to all other places and explore
+                                                    new markets and consumer bases.</p>
+                                                <p>Customers should feel comfortable buying new
+                                                    products as they set up their business in recent
+                                                    locations. A valid food license also makes
+                                                    expanding your business to new places or opening
+                                                    new stores easier. </p>
+                                                <p><strong>Quality upgrade:</strong></p>
+                                                <p>An FSSAI License/Registration facilitates the
+                                                    provision of high-quality food products and
+                                                    improves the overall performance of your food
+                                                    business.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                                                What is a Store or Establishment License? </button>
+                                        </h2>
+                                        <div id="collapseseven" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>A shop and establishment license is a legal
+                                                    document issued by a state government that allows
+                                                    a business owner to operate legally. This license
+                                                    indicates that the owner has complied with the
+                                                    labor laws, welfare rules, and safety rules
+                                                    related to the store or establishment. Employers
+                                                    can also avail of benefits provided by the
+                                                    government, such as employee wages, insurance, and
+                                                    sick leave.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseeight" aria-expanded="false" aria-controls="collapseeight">Who
+                                                should apply for a Stores and Facilities License? </button>
+                                        </h2>
+                                        <div id="collapseeight" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p> A store and convenience license is a mandatory
+                                                    registration that all businesses operating at a
+                                                    physical location must obtain. The specific
+                                                    requirements for obtaining a license may vary
+                                                    depending on the state in which your business is
+                                                    located. Generally, companies such as stores,
+                                                    restaurants, hotels, cafes, theaters, and other
+                                                    commercial establishments operating in physical
+                                                    locations must apply for a store and establishment
+                                                    license. Businesses that work from home offices or
+                                                    co-working spaces may also require this license.
+                                                    Standard documents required to obtain a store and
+                                                    facility license include proof of address,
+                                                    identity, and PAN card. Getting a license usually
+                                                    involves completing an application and submitting
+                                                    the required documents to your local municipal or
+                                                    state labor office. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsenine" aria-expanded="false" aria-controls="collapsenine">Why
+                                                is it essential to obtain a trademark registration?
+                                            </button> </h2>
+                                        <div id="collapsenine" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p> <strong>Public Notice of Trademark</strong> </p>
+                                                <p>A registered trademark is a visible expression of
+                                                    ownership of a brand. Trademark registration also
+                                                    establishes a brand's reputation and lets
+                                                    consumers know that the products or services
+                                                    associated with the trademark meet the brand's
+                                                    quality and control standards. It is an acronym
+                                                    that helps consumers make purchasing decisions by
+                                                    quickly identifying and differentiating their
+                                                    products and services from those of their
+                                                    competitors.</p>
+                                                <p><strong>National Validity and Ownership Estimates</strong></p>
+                                                <p>Trademark registration applies nationwide and
+                                                    provides a presumption of trademark validity and
+                                                    trademark ownership. Under federal trademark law,
+                                                    all registered trademarks are deemed to meet all
+                                                    critical USPTO registration requirements and have
+                                                    actual requests with the trademark registration
+                                                    owner.</p>
+                                                <p><strong>Resistance Against Trademark Infringement</strong></p>
+                                                <p>Trademark registration allows us to stop
+                                                    competitors from infringing our trademarks and
+                                                    tells the police how our brands are being used.
+                                                    You can ask the infringer to stop using your marks
+                                                    or use the social media provider or online
+                                                    marketplace to remove the infringing content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item aos-init aos-animate" data-aos="fade-up">
+                                        <h2 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseten" aria-expanded="false" aria-controls="collapseten">
+                                                What is company registration? </button> </h2>
+                                        <div id="collapseten" class="accordion-collapse collapse" data-bs-parent="#accordionfaq">
+                                            <div class="accordion-body details_faqs">
+                                                <p>Before filing for company registration, let us
+                                                    understand the concept of a company. What is a
+                                                    company? A company is a business entity having at
+                                                    least two directors and employees/shareholders. It
+                                                    is a legal business entity established under the
+                                                    Companies Registration Online Rules established
+                                                    under the Companies Act 2013.</p>
+                                                <p>So how do you register a company in India?
+                                                    Although the process is simple, it requires the
+                                                    assistance of a company registration service
+                                                    provider. Legal Ease provides end-to-end
+                                                    support, guiding you through every step required
+                                                    to register your company in India.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section sec-associate py-3 py-md-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-10 col-xl-7 mx-auto">
+                <div class="bg-white shadow rounded-3 border pt-4 px-4 px-md-5 pb-4 mb-4" style="max-width: 100%;">
+                    <div class="row align-items-center">
+                        <!-- Text Section -->
+                        <div class="col-md-7 mb-4 mb-md-0 text-center text-md-start">
+                            <h2 class="fs-4 fw-bold text-black mb-2">Ready to get started?</h2>
+                            <p class="fs-6 text-black mb-4">We value your data as if it were ours. All our certifications and licenses including GSP</p>
+                            <a href="{% url 'contact_us' %}" class="btn-green" style="padding:10px 24px;font-weight:600;border-radius:8px;">
+                                Get Started <i class="bx bx-right-arrow-alt"></i>
+                            </a>
+                        </div>
+                        <!-- Illustration Section -->
+                        <div class="col-md-5 text-center">
+                            <img src="{% static 'front/images/icons/get-started.webp' %}" alt="ITR file online" class="img-fluid" style="height:220px;max-width:100%;border-radius:7px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section sec-help py-4">
+    <div class="container-fluid px-0">
+        <div class="row g-0 text-center text-md-start">
+            <div class="col-md-4 d-flex bg-blue">
+                <div class="help-bx d-flex flex-column justify-content-center align-items-center w-100 h-100 px-3 py-5" style="color:#aebace;">
+                    <span class="icon fs-1 mb-2"><i class="bx bx-trophy"></i></span>
+                    <div class="fs-5 mb-2 fw-bold">ENSURE SECURITY</div>
+                    <p class="fs-6 mb-0">
+                        We keep your personal information, safe and secure. Your privacy is protected across Legal Ease.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex bg-green text-white">
+                <div class="help-bx d-flex flex-column justify-content-center align-items-center w-100 h-100 px-3 py-5">
+                    <span class="icon fs-1 mb-2"><i class="bx bx-group"></i></span>
+                    <div class="fs-5 mb-2 fw-bold">EXPERT TEAM</div>
+                    <p class="fs-6 mb-0">
+                        Legal Ease have expert team, who have expertise in a given domain they have the ability to work.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex bg-blue">
+                <div class="help-bx d-flex flex-column justify-content-center align-items-center w-100 h-100 px-3 py-5" style="color:#aebace;">
+                    <span class="icon fs-1 mb-2"><i class="bx bx-support"></i></span>
+                    <div class="fs-5 mb-2 fw-bold">24/7 SUPPORT</div>
+                    <p class="fs-6 mb-0">
+                        Legal Ease have Extraordinary Skills customer support, customers can get help and find answers to questions real-time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.bg-blue {
+    background: #101f39 !important;
+    color: white !important;
+}
+.bg-green {
+    background: #13a563 !important;
+    color: white !important;
+}
+.help-bx {
+    min-height: 255px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+.text-white {
+    color: white !important;
+}
+@media (max-width: 991.98px) {
+    .help-bx {
+        min-height: unset;
+        padding: 2rem 1rem !important;
+    }
+}
+@media (max-width: 767.98px) {
+    .help-bx {
+        padding: 1.2rem 0.5rem !important;
+    }
+    .row.g-0 > [class^="col-"] {
+        margin-bottom: 0.8rem;
+    }
+}
+
+.bg-blue p, .bg-blue h5, .bg-green p, .bg-green h5 {
+    color: white !important;
+}
+
+</style>
+
+
+
+    <section class="section sec-security py-3 py-md-4">
+    <div class="container">
+        <div class="text-center text-black mb-4 pb-2 position-relative">
+            <h2 class="fs-4 fw-bolder mb-3 sepetate">Committed to Security</h2>
+            <div class="subhead fs-14 fw-semilg">
+                You can begin income tax e-filling on your own. You must be very clear about your
+                <br class="d-none d-lg-block">
+                income source for tax compliance.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="security-points d-flex flex-wrap justify-content-center align-items-stretch gap-4 mb-0 ps-0">
+                    <li class="feature-item flex-grow-1 flex-basis-0 text-center px-3 py-2">
+                        <span class="icon d-block mb-2">
+                            <img src="{% static 'front/images/icons/encryption.svg' %}" alt="Secure data with encryption" height="37" width="36">
+                        </span>
+                        <div class="fw-bold mb-1 fs-5">Encryption</div>
+                        <p class="mb-0">Your data is transmitted across SSL certified pathways. We are SOC 2 compliant.</p>
+                    </li>
+                    <li class="feature-item flex-grow-1 flex-basis-0 text-center px-3 py-2">
+                        <span class="icon d-block mb-2">
+                            <img src="{% static 'front/images/icons/privacy.svg' %}" alt="Privacy with data" height="40" width="32">
+                        </span>
+                        <div class="fw-bold mb-1 fs-5">Privacy</div>
+                        <p class="mb-0">We do not share your or your client's data with unaffiliated third parties for their own purpose.</p>
+                    </li>
+                    <li class="feature-item flex-grow-1 flex-basis-0 text-center px-3 py-2">
+                        <span class="icon d-block mb-2">
+                            <img src="{% static 'front/images/icons/data-storage.svg' %}" alt="ISO certified data centric" height="39" width="39">
+                        </span>
+                        <div class="fw-bold mb-1 fs-5">Data Storage</div>
+                        <p class="mb-0">We use ISO 2000:2001 certified data centric which are quarterly VAPT tested and externally audited.</p>
+                    </li>
+                    <li class="feature-item flex-grow-1 flex-basis-0 text-center px-3 py-2">
+                        <span class="icon d-block mb-2">
+                            <img src="{% static 'front/images/icons/safe-and-secure.svg' %}" alt="Safe and secure with multiple layers" height="39" width="39">
+                        </span>
+                        <div class="fw-bold mb-1 fs-5">Safe &amp; Secure</div>
+                        <p class="mb-0">Our aim is to enable maximum security, through multiple layers, and to minimize the risk of anyone's data being misused.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.security-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.feature-item {
+    min-width: 210px;
+    max-width: 340px;
+    flex: 1 1 220px;
+    background: transparent;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 991.98px) {
+    .security-points {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px 0;
+    }
+    .feature-item {
+        min-width: unset;
+        max-width: 98vw;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+</style>
+
+
+
+<a href="/callback-request/" 
+   class="vertical-callback-btn text-white text-decoration-none fw-bold">
+  Call Back Request
+</a>
+
+<style>
+.vertical-callback-btn {
+  position: fixed;
+  top: 45%;
+  right: 0;
+  z-index: 9999;
+  background: #13a563; /* Munshi green */
+  color: #fff !important;
+  padding: 10px 8px;
+  width: 40px;
+  border-radius: 20px 0 0 20px; /* more rounded edges */
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  box-shadow: 0 3px 12px rgba(19, 165, 99, 0.3);
+  transition: background 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vertical-callback-btn:hover {
+  background: #002e63;
+  color: #fff !important;
+  text-decoration: none;
+}
+@media (max-width: 575.98px) {
+  .vertical-callback-btn {
+    position: static;
+    display: block;
+    width: 90vw;
+    margin: 1rem auto 0 auto;
+    border-radius: 10px;
+    writing-mode: horizontal-tb;
+    font-size: 1rem;
+    padding: 12px 0;
+    text-align: center;
+  }
+}
+</style>
+
+
+
+
+     <footer class="footer-section">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Business Registration</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Private Limited Company</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Limited Liability Partnership</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>One Person Company</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Partnership Firm</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Section & Company</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Storage Insite Registration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Tax Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Tax Planning</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>GST Registration</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>GST Return Filing</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>TDS Return Filing</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Tax Audit</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>RBI Transition</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">IT Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Website Development</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>E-commerce Solutions</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Digital Marketing</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Logo & Branding</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>SEO Services</a></li>
+                        <li class="mb-2"><a href="{% url 'services:list' %}" class="text-decoration-none text-white-50"><i class="fas fa-chevron-right me-2"></i>Accounting Software</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Legal ease</h5>
+                    <div class="d-flex gap-2 mb-3">
+                        <span class="badge bg-white text-dark p-2">VISA</span>
+                        <span class="badge bg-white text-dark p-2">GST</span>
+                        <span class="badge bg-white text-dark p-2">RBI</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <p class="text-white-50 mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i> 
+                            Gwalior (Madhya Pradesh) - 474001
+                        </p>
+                        <p class="text-white-50 mb-2">
+                            <i class="fas fa-phone-alt me-2"></i> 
+                            <a href="tel:+917566441515" class="text-white-50 text-decoration-none">+91 9999999999</a>
+                        </p>
+                        <p class="text-white-50 mb-0">
+                            <i class="fas fa-envelope me-2"></i> 
+                            <a href="mailto:support@legalmunshi.in" class="text-white-50 text-decoration-none">support@legalease.in</a>
+                        </p>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-top border-secondary mt-4 pt-3">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="text-white-50 mb-0">&copy; {% now "Y" %} Legal Ease. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="d-flex flex-wrap justify-content-center justify-content-md-end gap-3">
+                            <a href="" class="text-indigo-600 hover:text-indigo-500">Terms of Service</a>
+                            <a href="#" class="text-white-50 text-decoration-none">Refund Policy</a>
+                            <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>
+    <script>
+// Better dropdown handling
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdowns = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            var menu = this.nextElementSibling;
+            menu.classList.toggle('show');
+        });
+    });
+    
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-menu')) {
+            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+        }
+    });
+});
+
+</script>
+</body>
+</html>

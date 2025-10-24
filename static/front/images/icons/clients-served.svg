@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="71" height="79.76" viewBox="0 0 71 79.76">
+  <g id="Investor" transform="translate(-5 -1.76)">
+    <path id="Path_983" data-name="Path 983" d="M41.92,17H30.56A25.56,25.56,0,0,0,5,42.56V45.4a8.52,8.52,0,0,0,8.52,8.52H58.96a8.52,8.52,0,0,0,8.52-8.52V42.56A25.56,25.56,0,0,0,41.92,17Z" transform="translate(0 27.6)" fill="#2d4a60"/>
+    <circle id="Ellipse_65" data-name="Ellipse 65" cx="20" cy="20" r="20" transform="translate(16 1.76)" fill="#ffd188"/>
+    <path id="Path_984" data-name="Path 984" d="M9.156,17.71a25.5,25.5,0,0,0,8.077,1.323A25.432,25.432,0,0,0,34.273,12.5a25.489,25.489,0,0,0,13.942,6.336A19.866,19.866,0,0,0,9.156,17.71Z" transform="translate(7.647 0.007)" fill="#63ab3b"/>
+    <path id="Path_985" data-name="Path 985" d="M15.387,17l2.84,5.68L13.465,39.345a5.68,5.68,0,0,0,1.446,5.578l4.149,4.149a2.84,2.84,0,0,0,4.016,0l4.149-4.149a5.68,5.68,0,0,0,1.446-5.578L23.907,22.68,26.747,17Z" transform="translate(15.173 27.6)" fill="#63ab3b"/>
+    <path id="Path_986" data-name="Path 986" d="M33.78,55.76C26.5,55.76,21,52.1,21,47.24V24.52C21,19.664,26.5,16,33.78,16s12.78,3.664,12.78,8.52V47.24C46.56,52.1,41.065,55.76,33.78,55.76Z" transform="translate(29.44 25.76)" fill="#3084de"/>
+    <ellipse id="Ellipse_66" data-name="Ellipse 66" cx="13" cy="8.5" rx="13" ry="8.5" transform="translate(50 41.76)" fill="#01458e"/>
+    <path id="Path_987" data-name="Path 987" d="M21,27.68c0,4.706,5.723,8.52,12.78,8.52s12.78-3.814,12.78-8.52V22c0,4.706-5.723,8.52-12.78,8.52S21,26.706,21,22Z" transform="translate(29.44 36.8)" fill="#2d4a60"/>
+  </g>
+</svg>
