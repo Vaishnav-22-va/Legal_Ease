@@ -92,9 +92,12 @@ WSGI_APPLICATION = 'legalmunshi_backend.wsgi.application'
 # ---------------------------------------------------------
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default='postgresql://legalmunshi_db_user:6xuVWkzFMsYfnTaHjcRMUgvmHB7f5Iol@dpg-d3ucl0ali9vc73c0og0g-a.oregon-postgres.render.com/legalmunshi_db',
+        conn_max_age=600,
+        ssl_require=True
     )
 }
+
 
 
 # Media files
