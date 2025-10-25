@@ -406,7 +406,7 @@ body {
             <div class="container">
                 {# ✅ Logo goes to dashboard if partner, else home #}
                 <a class="navbar-brand" href="{% if user.is_authenticated and user.partner %}{% url 'partner:dashboard' %}{% else %}{% url 'home' %}{% endif %}">
-                    <img src="{% static 'common/images/logo1.png' %}" alt="Legal Munshi">
+                    <img src="{% static 'common/images/logo1.png' %}" alt="Legal Ease">
                 </a>
 
              
