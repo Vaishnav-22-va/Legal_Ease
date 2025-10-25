@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -89,14 +91,9 @@ WSGI_APPLICATION = 'legalmunshi_backend.wsgi.application'
 # ✅ Database
 # ---------------------------------------------------------
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'legalmunshi_db',
-        'USER': 'legalmunshi_user',
-        'PASSWORD': 'Vaishnav@123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 
